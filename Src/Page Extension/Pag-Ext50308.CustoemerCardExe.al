@@ -39,7 +39,7 @@ pageextension 50308 "Custoemer Card Exe" extends "Customer Card"
                     RecordLink.Init();
                     RecordLink."Record ID" := Rec.RecordId;
                     RecordLink.Type := RecordLink.Type::Link;
-                    RecordLink.Description := 'Microsoft..';
+                    RecordLink.Description := 'Microsoft Link';
                     RecordLink.URL1 := 'https://www.microsoft.com';
                     RecordLink.Company := CompanyName;
                     RecordLink.Created := CurrentDateTime;
