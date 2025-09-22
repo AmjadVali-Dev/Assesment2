@@ -55,4 +55,9 @@ page 50301 "Purchse Requisition Order List"
             }
         }
     }
+    trigger OnAfterGetRecord()
+    begin
+        if Rec.Marks < 35 then
+            CurrPage.FieldCaption := '❌ ' + Rec.Name;
+    end;
 }
