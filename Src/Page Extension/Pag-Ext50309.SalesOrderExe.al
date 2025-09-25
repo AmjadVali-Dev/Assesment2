@@ -16,4 +16,48 @@ pageextension 50309 "Sales Order Exe" extends "Sales Order"
             }
         }
     }
+    actions
+    {
+        addlast(processing)
+        {
+            action("json Operation")
+            {
+                ApplicationArea = All;
+                Caption = 'Json Operation';
+                Image = New;
+                trigger OnAction()
+                var
+                    JsonCodeunit: Codeunit "Json Practice";
+                begin
+                    JsonCodeunit.CreateStudentJSON();
+                end;
+            }
+            action("Json Header Operation")
+            {
+                ApplicationArea = All;
+                Image = New;
+                Caption = 'Json Header Operation';
+                trigger OnAction()
+                var
+                    JsonCodeunit: Codeunit "Json Practice";
+                begin
+                    JsonCodeunit.CreateSalesHeaderJson(Rec);
+                end;
+            }
+            action("ReadJson")
+            {
+                ApplicationArea = All;
+                Caption = 'Read Json';
+                Image = New;
+                trigger OnAction()
+                var
+                    JsonCodeunit: Codeunit "Json Practice";
+                    jsonRead: Text;
+                begin
+                    jsonRead := JsonCodeunit.CreateSalesHeaderJson(Rec);
+                    JsonCodeunit.ReadComplexJson(jsonRead);
+                end;
+            }
+        }
+    }
 }
