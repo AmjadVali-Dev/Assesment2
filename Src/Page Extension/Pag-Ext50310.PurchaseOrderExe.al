@@ -4,6 +4,18 @@ pageextension 50310 "Purchase OrderExe" extends "Purchase Order"
     {
         addlast(processing)
         {
+            action("Practice")
+            {
+                ApplicationArea = All;
+                Image = New;
+                Caption = 'Practice';
+                trigger OnAction()
+                var
+                    JsonPractice3Rec: Codeunit "Json Practice 3";
+                begin
+                    JsonPractice3Rec.CreateJsonExample();
+                end;
+            }
             action("Json Operaton")
             {
                 ApplicationArea = All;
@@ -40,6 +52,34 @@ pageextension 50310 "Purchase OrderExe" extends "Purchase Order"
                 begin
                     jsonRead := JsonCreateRec.CreatePurchaseHeader(Rec);
                     JsonCreateRec.ReadComplexJson(jsonRead);
+                end;
+            }
+            action("Json Buffer")
+            {
+                ApplicationArea = All;
+                Image = New;
+                Caption = 'Json Buffer';
+                trigger OnAction()
+                var
+                    JsonCodeunitRec: Codeunit "Json Practice 2";
+                    JsonString: Text;
+                begin
+                    JsonString := JsonCodeunitRec.CreatePurchaseHeader(Rec);
+                    JsonCodeunitRec.JsonBuffer(JsonString);
+                end;
+            }
+            action("Read Json Buffer")
+            {
+                ApplicationArea = All;
+                image = New;
+                Caption = 'Read Json Buffer';
+                trigger OnAction()
+                var
+                    jsoncodeunitRec: Codeunit "Json Practice 2";
+                    JsonString: Text;
+                begin
+                    JsonString := jsoncodeunitRec.CreatePurchaseHeader(Rec);
+                    jsoncodeunitRec.ReadWithJsonBuffer(JsonString);
                 end;
             }
         }

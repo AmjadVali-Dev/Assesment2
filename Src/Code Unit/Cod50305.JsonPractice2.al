@@ -47,6 +47,7 @@ codeunit 50305 "Json Practice 2"
         JsonObject.Add('Status', 'Success');
         JsonObject.Add('Message', 'Data retrieved Successfully');
         JsonObject.Add('Data', HeaderJsonObject);
+        Message(Format(JSonObject));
         exit(Format(JsonObject));
     end;
 
@@ -74,9 +75,6 @@ codeunit 50305 "Json Practice 2"
             JsonOrder.Get('Lines', JsonTokenLines);
             JsonArrayLines := JsonTokenLines.AsArray();
 
-            JsonOrder.Get('Lines', JsonTokenLines);
-            JsonArrayLines := JsonTokenLines.AsArray();
-
             foreach JsonTokenLines in JsonArrayLines do begin
                 Message(Format(JsonTokenLines));
             end;
@@ -88,6 +86,40 @@ codeunit 50305 "Json Practice 2"
             TempBlob.CreateInStream(InStr, TextEncoding::UTF8);
 
             DownloadFromStream(InStr, '', '', '', FileName);
+        end;
+    end;
+
+    procedure JsonBuffer(jsonString: Text)
+    var
+        JsonBuffer: Record "JSON Buffer" temporary;
+    begin
+        JsonBuffer.ReadFromText(jsonString);
+        Page.Run(Page::"Json Buffer ListA", JsonBuffer);
+    end;
+
+
+    procedure ReadWithJsonBuffer(JsonString: Text)
+    var
+        JsonBuffer: Record "JSON Buffer" temporary;
+        SellToCustNo: Text;
+        PostingDate: Date;
+        LineNo: Integer;
+        LineType: Text;
+    begin
+        JsonBuffer.ReadFromText(JsonString);
+        JsonBuffer.GetPropertyValue(SellToCustNo, 'Vendor No');
+        JsonBuffer.GetDatePropertyValue(PostingDate, 'Posting Date');
+        Message('Sell to Cust No:%1 ', SellToCustNo);
+        Message('Posting Date:%1 ', PostingDate);
+        JsonBuffer.SetRange(Depth, 4);
+        if JsonBuffer.FindSet() then begin
+            repeat
+                if JsonBuffer.Value = 'Line No' then
+                    JsonBuffer.GetIntegerPropertyValue(LineNo, 'Line No');
+                if JsonBuffer.Value = 'Type' then
+                    JsonBuffer.GetPropertyValue(LineType, 'Type');
+                Message('Line No:%1 and Line Type:%2', LineNo, LineType);
+            until JsonBuffer.Next() = 0;
         end;
     end;
 }
