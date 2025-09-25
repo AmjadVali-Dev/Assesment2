@@ -52,40 +52,6 @@ codeunit 50304 "Json Practice"
         exit(Format(JsonObject));
     end;
 
-    procedure CreateComplexJsonAlter(SalesHeader: Record "Sales Header"): Text
-    var
-        SalesLine: Record "Sales Line";
-        HdrJsonObject: JsonObject;
-        LineJsonObject: JsonObject;
-        JsonObject: JsonObject;
-        JsonArray: JsonArray;
-    begin
-        HdrJsonObject.Add(SalesHeader.FieldCaption("Document Type"), SalesHeader."Document Type".AsInteger());
-        HdrJsonObject.Add(SalesHeader.FieldCaption("No."), SalesHeader."No.");
-        HdrJsonObject.Add(SalesHeader.FieldCaption("Sell-to Customer No."), SalesHeader."Sell-to Customer No.");
-        HdrJsonObject.Add(SalesHeader.FieldCaption("Sell-to Customer Name"), SalesHeader."Sell-to Customer Name");
-
-        SalesLine.SetRange("Document Type", SalesHeader."Document Type");
-        SalesLine.SetRange("Document No.", SalesHeader."No.");
-        if SalesLine.FindSet() then begin
-            repeat
-                Clear(LineJsonObject);
-                LineJsonObject.Add(SalesLine.FieldCaption("Document Type"), SalesLine."Document Type".AsInteger());
-                LineJsonObject.Add(SalesLine.FieldCaption("Document No."), SalesLine."Document No.");
-                LineJsonObject.Add(SalesLine.FieldCaption("No."), SalesLine."No.");
-                LineJsonObject.Add(SalesLine.FieldCaption(Description), SalesLine.Description);
-                LineJsonObject.Add(SalesLine.FieldCaption(Quantity), SalesLine.Quantity);
-                LineJsonObject.Add(SalesLine.FieldCaption("Unit Price"), SalesLine."Unit Price");
-                JsonArray.Add(LineJsonObject);
-            until SalesLine.Next() = 0;
-        end;
-        HdrJsonObject.Add('Lines', JsonArray);
-        JsonObject.Add('Status', 'Success');
-        JsonObject.Add('Message', 'Data retrieved Successfully');
-        JsonObject.Add('Data', HdrJsonObject);
-        exit(Format(JsonObject));
-    end;
-
     procedure ReadComplexJson(JsonString: Text)
     var
         JsonObject: JsonObject;
@@ -124,4 +90,12 @@ codeunit 50304 "Json Practice"
         end;
     end;
 
+
+    procedure ReadjsonBuffer(JsonString: Text)
+    var
+        JsonBuffer: Record "JSON Buffer" temporary;
+    begin
+        JsonBuffer.ReadFromText(JsonString);
+        Page.Run(Page::"Json Buffer ListA", JsonBuffer);
+    end;
 }
