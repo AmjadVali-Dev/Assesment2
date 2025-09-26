@@ -122,4 +122,87 @@ codeunit 50305 "Json Practice 2"
             until JsonBuffer.Next() = 0;
         end;
     end;
+
+    procedure CreateCustomerWithShipToJson(Customer: Record Customer): Text
+    var
+
+        ShipTo: Record "Ship-to Address";
+        JsonObject: JsonObject;
+        JsonCustomer: JsonObject;
+        JsonShipTo: JsonObject;
+        JsonShipToArray: JsonArray;
+        JsonText: Text;
+    begin
+        JsonCustomer.Add('No', Customer."No.");
+        JsonCustomer.Add('Name', Customer.Name);
+        JsonCustomer.Add('Address', Customer.Address);
+
+        ShipTo.SetRange("Customer No.", Customer."No.");
+        if ShipTo.FindSet() then begin
+            repeat
+                Clear(JsonShipTo);
+                JsonShipTo.Add('Code', ShipTo.Code);
+                JsonShipTo.Add('Address1', ShipTo.Address);
+                JsonShipTo.Add('City1', ShipTo.City);
+                JsonShipToArray.Add(JsonShipTo);
+            until ShipTo.Next() = 0;
+        end;
+        JsonCustomer.Add('ShipToAddresses', JsonShipToArray);
+        JsonObject.Add('Status', 'Success');
+        JsonObject.Add('Message', 'Data retrieved Successfully');
+        JsonObject.Add('Data', JsonCustomer);
+        exit(Format(JsonObject));
+    end;
+
+
+    procedure ReadCustomerJson(JsonText: Text)
+    var
+        JsonMgt: Codeunit "JSON Management";
+        ObjectJsonMgt: Codeunit "JSON Management";
+        ArrayJsonMgt: Codeunit "JSON Management";
+        JsonDataText: Text;
+        ShipToJsonText: Text;
+        i: Integer;
+        CustomerNo: Text;
+        CustomerName: Text;
+        CustomerAddress: Text;
+        ShipCode: Text;
+        ShipAddress: Text;
+        ShipCity: Text;
+        CustomerRec: Record Customer;
+        ShipToRec: Record "Ship-to Address";
+    begin
+        // Step 1: Load root JSON
+        JsonMgt.InitializeObject(JsonText);
+
+        // Step 2: Read Data object
+        if JsonMgt.GetArrayPropertyValueAsStringByName('Data', JsonDataText) then begin
+            ObjectJsonMgt.InitializeObject(JsonDataText);
+
+            // Step 3: Read customer fields
+
+            ObjectJsonMgt.GetStringPropertyValueByName('No', CustomerNo);
+            ObjectJsonMgt.GetStringPropertyValueByName('Name', CustomerName);
+            ObjectJsonMgt.GetStringPropertyValueByName('Address', CustomerAddress);
+
+            Message('Customer No: %1 Name: %2 Address: %3', CustomerNo, CustomerName, CustomerAddress);
+
+            if ObjectJsonMgt.GetArrayPropertyValueAsStringByName('ShipToAddresses', JsonDataText) then begin
+                ArrayJsonMgt.InitializeCollection(JsonDataText);
+
+                for i := 0 to ArrayJsonMgt.GetCollectionCount() - 1 do begin
+                    ArrayJsonMgt.GetObjectFromCollectionByIndex(ShipToJsonText, i);
+                    ObjectJsonMgt.InitializeObject(ShipToJsonText);
+
+                    ObjectJsonMgt.GetStringPropertyValueByName('Code', ShipCode);
+                    ObjectJsonMgt.GetStringPropertyValueByName('Address1', ShipAddress);
+                    ObjectJsonMgt.GetStringPropertyValueByName('City1', ShipCity);
+
+                    Message('Ship-to: %1, %2, %3', ShipCode, ShipAddress, ShipCity);
+                end;
+            end;
+        end;
+    end;
+
 }
+

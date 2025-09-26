@@ -109,6 +109,34 @@ pageextension 50308 "Custoemer Card Exe" extends "Customer Card"
                     CodeunitRec.DeleteAttachMent();
                 end;
             }
+            action("Create Cust Json")
+            {
+                ApplicationArea = All;
+                Image = New;
+                Caption = 'Create Cust json';
+                trigger OnAction()
+                var
+                    JsonCreationRec: Codeunit "Json Practice 2";
+                    JsonText: Text;
+                begin
+                    JsonText := JsonCreationRec.CreateCustomerWithShipToJson(Rec);
+                    Message(JsonText);
+                end;
+            }
+            action(ReadJsonAction)
+            {
+                ApplicationArea = All;
+                Caption = 'Read Customer JSON';
+                Image = New;
+                trigger OnAction()
+                var
+                    JsonCreationRec: Codeunit "Json Practice 2";
+                    JsonText: Text;
+                begin
+                    JsonText := JsonCreationRec.CreateCustomerWithShipToJson(Rec);
+                    JsonCreationRec.ReadCustomerJson(JsonText);
+                end;
+            }
         }
     }
 }

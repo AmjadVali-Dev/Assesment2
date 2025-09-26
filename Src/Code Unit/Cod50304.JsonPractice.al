@@ -98,4 +98,6 @@ codeunit 50304 "Json Practice"
         JsonBuffer.ReadFromText(JsonString);
         Page.Run(Page::"Json Buffer ListA", JsonBuffer);
     end;
+
+
 }
