@@ -125,7 +125,6 @@ codeunit 50305 "Json Practice 2"
 
     procedure CreateCustomerWithShipToJson(Customer: Record Customer): Text
     var
-
         ShipTo: Record "Ship-to Address";
         JsonObject: JsonObject;
         JsonCustomer: JsonObject;
@@ -203,6 +202,5 @@ codeunit 50305 "Json Practice 2"
             end;
         end;
     end;
-
 }
 
