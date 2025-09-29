@@ -77,4 +77,69 @@ codeunit 50306 "Json Practice 3"
     end;
 
 
+    procedure GenerateAppJson()
+    var
+        JsonObj: JsonObject;
+        JsonArray: JsonArray;
+        RangeObj: JsonObject;
+        ResourcePolicyObj: JsonObject;
+        OutStr: OutStream;
+        InStr: InStream;
+        TempBlob: Codeunit "Temp Blob";
+        FileName: Text;
+        File: Text;
+    begin
+        // Main JSON properties
+        JsonObj.Add('id', 'ee873b04-3f0e-45e0-b29');
+        JsonObj.Add('name', 'ALExammm');
+        JsonObj.Add('publisher', 'Default');
+        JsonObj.Add('version', '1.');
+        JsonObj.Add('brief', '');
+        JsonObj.Add('description', '');
+        JsonObj.Add('privacyStatement', '');
+        JsonObj.Add('EULA', '');
+        JsonObj.Add('help', '');
+        JsonObj.Add('url', '');
+        JsonObj.Add('logo', '');
+
+        // Platform and app version
+        JsonObj.Add('platform', '1.0.0.0');
+        JsonObj.Add('application', '25.0.0.0');
+
+        // idRanges as array of object
+        Clear(RangeObj);
+        RangeObj.Add('from', 50311);
+        RangeObj.Add('to', 50400);
+        Clear(JsonArray);
+        JsonArray.Add(RangeObj);
+        JsonObj.Add('idRanges', JsonArray);
+
+        // resourceExposurePolicy object
+        Clear(ResourcePolicyObj);
+        ResourcePolicyObj.Add('allowDebugging', false);
+        ResourcePolicyObj.Add('allowDownloadingSource', false);
+        ResourcePolicyObj.Add('includeSourceInSymbolFile', false);
+        ResourcePolicyObj.Add('applyToDevExtension', false);
+        JsonObj.Add('resourceExposurePolicy', ResourcePolicyObj);
+
+        // Runtime
+        JsonObj.Add('runtime', '14.0');
+
+        // Features array
+        Clear(JsonArray);
+        JsonArray.Add('NoImplicitWith');
+        JsonObj.Add('features', JsonArray);
+
+        // Save as file
+        FileName := 'app11.json';
+
+        TempBlob.CreateOutStream(OutStr, TextEncoding::UTF8);
+        OutStr.WriteText(Format(JsonObj));
+        TempBlob.CreateInStream(InStr, TextEncoding::UTF8);
+        DownloadFromStream(InStr, '', '', '', FileName);
+        Message('app.json file generated successfully!');
+    end;
+
+
+
 }
