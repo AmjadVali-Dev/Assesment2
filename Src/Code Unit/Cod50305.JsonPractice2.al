@@ -202,5 +202,46 @@ codeunit 50305 "Json Practice 2"
             end;
         end;
     end;
+
+
+
+
+    procedure ReadSaleOrder(SalesHeader: Record "Sales Header")
+    var
+        SalesLine: Record "Sales Line";
+        JsonMgnt: Codeunit "JSON Management";
+        JsonObject: JsonObject;
+        LineObject: JsonObject;
+        Array: JsonArray;
+        DataToken: JsonToken;
+        FieldRefL: FieldRef;
+        RecordRefL: RecordRef;
+        i: Integer;
+        DataTxt: Text[100];
+    begin
+        RecordRefL.GetTable(SalesHeader);
+        for i := 1 to RecordRefL.FieldCount do begin
+            FieldRefL := RecordRefL.FieldIndex(i);
+            JsonObject.Add(FieldRefL.Name, Format(FieldRefL.Value));
+        end;
+        SalesLine.SetRange("Document Type", SalesHeader."Document Type");
+        SalesLine.SetRange("Document No.", SalesHeader."No.");
+        if SalesLine.FindSet() then begin
+            repeat
+                Clear(RecordRefL);
+                Clear(FieldRefL);
+                Clear(LineObject);
+                RecordRefL.GetTable(SalesLine);
+                for i := 1 to RecordRefL.FieldCount do begin
+                    FieldRefL := RecordRefL.FieldIndex(i);
+                    LineObject.Add(FieldRefL.Name, Format(FieldRefL.Value));
+                end;
+                Array.Add(LineObject);
+            until SalesLine.Next() = 0;
+        end;
+        JsonObject.Add('Lines', Array);
+        Message(Format(JsonObject));
+    end;
+
 }
 

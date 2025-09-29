@@ -72,6 +72,18 @@ pageextension 50309 "Sales Order Exe" extends "Sales Order"
                     JsonCodeunit.ReadjsonBuffer(jsonRead);
                 end;
             }
+            action("Read Sales Order")
+            {
+                ApplicationArea = All;
+                Image = New;
+                Caption = 'Read Sales Order';
+                trigger OnAction()
+                var
+                    JsonPracticeCodeUnitL: Codeunit "Json Practice 2";
+                begin
+                    JsonPracticeCodeUnitL.ReadSaleOrder(Rec);
+                end;
+            }
         }
     }
 }

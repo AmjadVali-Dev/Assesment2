@@ -35,7 +35,6 @@ codeunit 50306 "Json Practice 3"
         Message(JsonText);
     end;
 
-
     procedure JsonManagement(JsonText: Text)
     var
         JsonManagement: Codeunit "JSON Management";
@@ -67,7 +66,6 @@ codeunit 50306 "Json Practice 3"
         for i := 0 to ArrayjsonObject.GetCollectionCount() - 1 do begin
             ArrayjsonObject.GetObjectFromCollectionByIndex(ShipToJsonText, i);
             objectJsonObject.InitializeObject(ShipToJsonText);
-
 
             objectJsonObject.GetStringPropertyValueByName('Code', ShipCode);
             objectJsonObject.GetStringPropertyValueByName('Address1', ShipAddress);
