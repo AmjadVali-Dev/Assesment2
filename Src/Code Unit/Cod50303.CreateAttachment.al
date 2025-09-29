@@ -3,7 +3,6 @@ codeunit 50303 "Create Attachment"
     procedure UploadDocumentToFactBox(CustomerRec: Record Customer)
     var
         DocumentMgnt: Record "Document Attachment";
-        FileMgnt: Codeunit "File Management";
         InstreamL: InStream;
         DialogText: Label 'Please Select a File';
         FromFileL: Text[100];
