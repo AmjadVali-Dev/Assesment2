@@ -76,7 +76,6 @@ codeunit 50306 "Json Practice 3"
 
     end;
 
-
     procedure GenerateAppJson()
     var
         JsonObj: JsonObject;
@@ -87,7 +86,6 @@ codeunit 50306 "Json Practice 3"
         InStr: InStream;
         TempBlob: Codeunit "Temp Blob";
         FileName: Text;
-        File: Text;
     begin
         // Main JSON properties
         JsonObj.Add('id', 'ee873b04-3f0e-45e0-b29');
@@ -132,10 +130,13 @@ codeunit 50306 "Json Practice 3"
 
         // Save as file
         FileName := 'app11.json';
-
+        // First I need To Create A Outstream And I need To Write It..
+        //"Temp Blob" is a system codeunit in Business Central that acts as a temporary in-memory BLOB storage.
         TempBlob.CreateOutStream(OutStr, TextEncoding::UTF8);
         OutStr.WriteText(Format(JsonObj));
+        //Now I need To Read The data Using Instream
         TempBlob.CreateInStream(InStr, TextEncoding::UTF8);
+        //It IS For How To Download 
         DownloadFromStream(InStr, '', '', '', FileName);
         Message('app.json file generated successfully!');
     end;
