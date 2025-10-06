@@ -52,8 +52,22 @@ page 50301 "Purchse Requisition Order List"
                 {
                     ToolTip = 'Specifies the value of the Released Date field.', Comment = '%';
                 }
+                field(Marks; Rec.Marks)
+                {
+                    ToolTip = 'Specifies the value of the Marks field.', Comment = '%';
+                }
             }
         }
     }
-
+    trigger OnDeleteRecord(): Boolean
+    begin
+        if not Confirm('Do You Really want to Delete this Purchase requisition %1', false, Rec."No.") then begin
+            Message('Delete Cancelled');
+            exit(false);
+        end
+        else begin
+            Message('Record will be deleted.');
+            exit(true);
+        end;
+    end;
 }

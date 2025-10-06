@@ -140,7 +140,4 @@ codeunit 50306 "Json Practice 3"
         DownloadFromStream(InStr, '', '', '', FileName);
         Message('app.json file generated successfully!');
     end;
-
-
-
 }

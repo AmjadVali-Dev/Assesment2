@@ -51,7 +51,7 @@ page 50305 "Pending Release Purchase Req"
         else
             exit;
     end;
- 
+
     procedure CreateLine()
     var
         PurchaseReqLine: Record "Purchase Requisition Line";
@@ -63,7 +63,7 @@ page 50305 "Pending Release Purchase Req"
             PurchaseLineRecL."Line No." := PurchaseLineRecL."Line No." + 10000
         else
             PurchaseLineRecL."Line No." := 10000;
- 
+
         CurrPage.SetSelectionFilter(PurchaseReqLine);
         if PurchaseReqLine.FindSet() then begin
             repeat
@@ -85,7 +85,7 @@ page 50305 "Pending Release Purchase Req"
             until PurchaseReqLine.Next() = 0;
         end;
     end;
- 
+
     procedure SetPurchaseHeader(PurchLineRec: Record "Purchase Line")
     var
         PurchHdrRecL: Record "Purchase Header";
@@ -96,8 +96,8 @@ page 50305 "Pending Release Purchase Req"
             PurchHdrRecG := PurchHdrRecL;
         end;
     end;
+
     var
         PurchHdrRecG: Record "Purchase Header";
 }
- 
- 
+

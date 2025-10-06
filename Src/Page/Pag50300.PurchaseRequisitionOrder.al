@@ -57,6 +57,10 @@ page 50300 "Purchase Requisition Order"
                 {
                     ToolTip = 'Specifies the value of the Released Time field.', Comment = '%';
                 }
+                field(Marks; Rec.Marks)
+                {
+                    ToolTip = 'Specifies the value of the Marks field.', Comment = '%';
+                }
             }
             part("Purchase Requisition Order Subform"; "Purchase Requisition Subform")
             {
@@ -83,4 +87,14 @@ page 50300 "Purchase Requisition Order"
             }
         }
     }
+    trigger OnModifyRecord(): Boolean
+    begin
+        if Rec."Marks" < 0 then begin
+            Message('Marks cannot be negative.');
+            exit(false); // Stop modification
+        end;
+
+        Message('Record modification allowed.');
+        exit(true); // Proceed → OnModify() will run next
+    end;
 }

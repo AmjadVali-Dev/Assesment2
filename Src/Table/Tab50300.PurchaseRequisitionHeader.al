@@ -54,6 +54,11 @@ table 50300 "Purchase Requisition Header"
         {
             Caption = 'Released Time';
         }
+        field(12; "Marks"; Integer)
+        {
+            Caption = 'Marks';
+        }
+
     }
     keys
     {
@@ -101,4 +106,13 @@ table 50300 "Purchase Requisition Header"
                 ReqLine.Modify();
             until ReqLine.Next() = 0;
     end;
+
+    trigger OnModify()
+    begin
+        Message('Record modified  : %1', "No.");
+
+        if "Marks" > 100 then
+            Error('Marks cannot exceed 100.');
+    end;
+
 }
