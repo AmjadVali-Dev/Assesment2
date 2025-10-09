@@ -197,7 +197,6 @@ codeunit 50305 "Json Practice 2"
                     ObjectJsonMgt.GetStringPropertyValueByName('Address1', ShipAddress);
                     ObjectJsonMgt.GetStringPropertyValueByName('City1', ShipCity);
 
-
                     Message('Ship-to: %1, %2, %3', ShipCode, ShipAddress, ShipCity);
                 end;
             end;
