@@ -1,5 +1,16 @@
 pageextension 50308 "Custoemer Card Exe" extends "Customer Card"
 {
+    layout
+    {
+        addlast(content)
+        {
+            field("Total Amount Sales "; Rec."Total Amount Sales ")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Total Amount Sales field.', Comment = '%';
+            }
+        }
+    }
     actions
     {
         addlast(Processing)

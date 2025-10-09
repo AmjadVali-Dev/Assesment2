@@ -14,7 +14,6 @@ codeunit 50308 TempBlobCodeunit
         OutStr.WriteText('102,Alice,HR' + '\n');
         OutStr.WriteText('103,Bob,Finance' + '\n');
         TempBlob.CreateInStream(InStr, TextEncoding::UTF8);
-
         DownloadFromStream(InStr, '', '', '', FileName);
     end;
 
