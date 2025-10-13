@@ -97,6 +97,19 @@ pageextension 50309 "Sales Order Exe" extends "Sales Order"
                     JsonPractice3.GenerateAppJson();
                 end;
             }
+            action("Create a Salaes Order")
+            {
+                ApplicationArea = All;
+                Image = New;
+                Caption = 'Create a Sales Order';
+                trigger OnAction()
+                var
+                    CodeunitRec: Codeunit "Sales Order Creation";
+                begin
+                    CodeunitRec.CreateSalesOrderFromCustomer();
+                end;
+            }
+
         }
     }
 

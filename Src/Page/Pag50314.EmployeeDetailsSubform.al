@@ -1,18 +1,16 @@
-page 50312 "Employee Details A"
+page 50314 "Employee Details  Subform"
 {
     ApplicationArea = All;
-    Caption = 'Employee Details A';
-    PageType = Card;
+    Caption = 'Employee Details  Subform';
+    PageType = ListPart;
     SourceTable = "Employe DetailssA";
 
     layout
     {
         area(Content)
         {
-            group(General)
+            repeater(General)
             {
-                Caption = 'General';
-
                 field(EmpID; Rec.EmpID)
                 {
                     ToolTip = 'Specifies the value of the EmpID field.', Comment = '%';
@@ -33,13 +31,13 @@ page 50312 "Employee Details A"
                 {
                     ToolTip = 'Specifies the value of the JoiningDate field.', Comment = '%';
                 }
-                field(Bonus; Rec.Bonus)
-                {
-                    ToolTip = 'Specifies the value of the Bonus field.', Comment = '%';
-                }
                 field(Designation; Rec.Designation)
                 {
                     ToolTip = 'Specifies the value of the Designation field.', Comment = '%';
+                }
+                field(Bonus; Rec.Bonus)
+                {
+                    ToolTip = 'Specifies the value of the Bonus field.', Comment = '%';
                 }
             }
         }

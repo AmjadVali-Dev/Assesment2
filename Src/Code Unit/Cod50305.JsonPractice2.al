@@ -29,8 +29,6 @@ codeunit 50305 "Json Practice 2"
         HeaderJsonObject.Add('Vendor No', PurchaseHeaderRec."Buy-from Vendor No.");
         HeaderJsonObject.Add('No', PurchaseHeaderRec."No.");
         HeaderJsonObject.Add('Posting Date', PurchaseHeaderRec."Posting Date");
-
-
         PurchaseLineRec.SetRange("Document Type", PurchaseHeaderRec."Document Type");
         PurchaseLineRec.SetRange("Document No.", PurchaseHeaderRec."No.");
         if PurchaseLineRec.FindSet() then begin
@@ -171,15 +169,9 @@ codeunit 50305 "Json Practice 2"
         CustomerRec: Record Customer;
         ShipToRec: Record "Ship-to Address";
     begin
-        // Step 1: Load root JSON
         JsonMgt.InitializeObject(JsonText);
-
-        // Step 2: Read Data object
         if JsonMgt.GetArrayPropertyValueAsStringByName('Data', JsonDataText) then begin
             ObjectJsonMgt.InitializeObject(JsonDataText);
-
-            // Step 3: Read customer fields
-
             ObjectJsonMgt.GetStringPropertyValueByName('No', CustomerNo);
             ObjectJsonMgt.GetStringPropertyValueByName('Name', CustomerName);
             ObjectJsonMgt.GetStringPropertyValueByName('Address', CustomerAddress);
@@ -202,9 +194,6 @@ codeunit 50305 "Json Practice 2"
             end;
         end;
     end;
-
-
-
 
     procedure ReadSaleOrder(SalesHeader: Record "Sales Header")
     var

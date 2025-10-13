@@ -16,6 +16,4 @@ codeunit 50308 TempBlobCodeunit
         TempBlob.CreateInStream(InStr, TextEncoding::UTF8);
         DownloadFromStream(InStr, '', '', '', FileName);
     end;
-
-
 }

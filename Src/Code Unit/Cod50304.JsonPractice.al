@@ -69,23 +69,18 @@ codeunit 50304 "Json Practice"
         if JsonObject.ReadFrom(JsonString) then begin
             JsonObject.Get('Data', JsonTokenValue);
             JsonOrder := JsonTokenValue.AsObject();
-
             JsonOrder.Get('Document Type', JsonTokenValue);
             DocType := JsonTokenValue.AsValue().AsInteger();
-
             JsonOrder.Get('Lines', JsonTokenLines);
             JsonArrayLines := JsonTokenLines.AsArray();
-
             foreach JsonTokenLines in JsonArrayLines do begin
                 Message(Format(JsonTokenLines));
             end;
             Message('Document Type %1', DocType);
-
             FileName := 'Order_' + Format(DocType) + '.json';
             TempBlob.CreateOutStream(OutStr, TextEncoding::UTF8);
             OutStr.WriteText(Format(JsonObject));
             TempBlob.CreateInStream(InStr, TextEncoding::UTF8);
-
             DownloadFromStream(InStr, '', '', '', FileName);
         end;
     end;
