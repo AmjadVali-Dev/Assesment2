@@ -35,58 +35,6 @@ codeunit 50313 "Json Practice Employe"
         exit(Format(JsonObject));
     end;
 
-    procedure InsertSalesOrder(JsonObjectData: Text[2048])
-    var
-        SalesHdrRec: Record "Sales Header";
-        SalesLineRec: Record "Sales Line";
-        ObjectJSONMgnt: Codeunit "JSON Management";
-        SalesHdrMgnt: Codeunit "JSON Management";
-        SalesLineMgnt: Codeunit "JSON Management";
-        DateData: Date;
-        Qty: Decimal;
-        i: Integer;
-        LineNo: Integer;
-        ArrayTxt: Text;
-        DataTxt: Text;
-        SalesHdrTxt: Text;
-        SalesLineTxt: Text;
-    begin
-        ObjectJSONMgnt.InitializeObject(JsonObjectData);
-        if ObjectJSONMgnt.GetStringPropertyValueByName('', SalesHdrTxt) then begin
-            SalesHdrMgnt.InitializeObject(SalesHdrTxt);
-            SalesHdrRec.Init();
-            SalesHdrRec."Document Type" := SalesHdrRec."Document Type"::Order;
-            SalesHdrMgnt.GetStringPropertyValueByName('No.', DataTxt);
-            SalesHdrRec."No." := DataTxt;
-            SalesHdrMgnt.GetStringPropertyValueByName('Document Date', DataTxt);
-            Evaluate(SalesHdrRec."Document Date", DataTxt);
-            SalesHdrMgnt.GetStringPropertyValueByName('Sell-to Customer No.', DataTxt);
-            SalesHdrRec.Validate("Sell-to Customer No.", DataTxt);
-            SalesHdrRec.Insert();
-            ObjectJSONMgnt.InitializeObject(SalesHdrTxt);
-            if ObjectJSONMgnt.GetArrayPropertyValueAsStringByName('Lines', ArrayTxt) then begin
-                SalesLineMgnt.InitializeCollection(ArrayTxt);
-                for i := 0 to SalesLineMgnt.GetCollectionCount() - 1 do begin
-                    SalesLineMgnt.GetObjectFromCollectionByIndex(SalesLineTxt, i);
-                    ObjectJSONMgnt.InitializeObject(SalesLineTxt);
-                    SalesLineRec.Init();
-                    SalesLineRec."Document Type" := SalesHdrRec."Document Type";
-                    SalesLineRec."Document No." := SalesHdrRec."No.";
-                    SalesLineRec."Line No." := LineNo;
-                    SalesLineRec.Type := SalesLineRec.Type::Item;
-                    ObjectJSONMgnt.GetStringPropertyValueByName('ItemNo', DataTxt);
-                    SalesLineRec.Validate("No.", DataTxt);
-                    ObjectJSONMgnt.GetStringPropertyValueByName('Quantity', DataTxt);
-                    if Evaluate(Qty, DataTxt) then
-                        SalesLineRec.Validate(Quantity, Qty);
-                    LineNo += 10000;
-                    SalesLineRec.Insert();
-                end;
-            end;
-        end;
-    end;
-
-
     procedure InsertEmployeeFromJson(JsonObjectData: Text[2048])
     var
         EmployeeRec: Record "Employe DetailssA";
@@ -130,7 +78,4 @@ codeunit 50313 "Json Practice Employe"
         end;
         Message('Employee JSON import completed successfully!');
     end;
-
-
-
 }
