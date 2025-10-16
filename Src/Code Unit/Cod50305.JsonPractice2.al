@@ -184,7 +184,6 @@ codeunit 50305 "Json Practice 2"
                 for i := 0 to ArrayJsonMgt.GetCollectionCount() - 1 do begin
                     ArrayJsonMgt.GetObjectFromCollectionByIndex(ShipToJsonText, i);
                     ObjectJsonMgt.InitializeObject(ShipToJsonText);
-
                     ObjectJsonMgt.GetStringPropertyValueByName('Code', ShipCode);
                     ObjectJsonMgt.GetStringPropertyValueByName('Address1', ShipAddress);
                     ObjectJsonMgt.GetStringPropertyValueByName('City1', ShipCity);

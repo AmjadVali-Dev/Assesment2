@@ -3,6 +3,7 @@ report 50301 "Pending Purchase RequisationA"
     ApplicationArea = All;
     Caption = 'Pending Purchase RequisationA';
     UsageCategory = ReportsAndAnalysis;
+    DefaultLayout = RDLC;
     RDLCLayout = 'Src\Reports\PendingPurchaseRequisation.rdl';
 
     dataset
