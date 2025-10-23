@@ -208,7 +208,7 @@ codeunit 50305 "Json Practice 2"
         DataTxt: Text[100];
     begin
         RecordRefL.GetTable(SalesHeader);
-        for i := 1 to RecordRefL.FieldCount do begin
+        for i := 1 to RecordRefL.Count do begin
             FieldRefL := RecordRefL.FieldIndex(i);
             JsonObject.Add(FieldRefL.Name, Format(FieldRefL.Value));
         end;
@@ -220,7 +220,7 @@ codeunit 50305 "Json Practice 2"
                 Clear(FieldRefL);
                 Clear(LineObject);
                 RecordRefL.GetTable(SalesLine);
-                for i := 1 to RecordRefL.FieldCount do begin
+                for i := 1 to RecordRefL.Count do begin
                     FieldRefL := RecordRefL.FieldIndex(i);
                     LineObject.Add(FieldRefL.Name, Format(FieldRefL.Value));
                 end;
@@ -230,6 +230,4 @@ codeunit 50305 "Json Practice 2"
         JsonObject.Add('Lines', Array);
         Message(Format(JsonObject));
     end;
-
 }
-

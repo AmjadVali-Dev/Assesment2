@@ -14,9 +14,7 @@ codeunit 50309 "Employe DetailsJson"
                 Clear(JsonObj);
                 Clear(RecRefL);
                 Clear(FieldRefL);
-
                 RecRefL.GetTable(EmpRec);
-
                 for i := 1 to RecRefL.FieldCount do begin
                     FieldRefL := RecRefL.FieldIndex(i);
                     JsonObj.Add(FieldRefL.Name, Format(FieldRefL.Value));
@@ -24,7 +22,6 @@ codeunit 50309 "Employe DetailsJson"
                 JsonArray.Add(JsonObj);
             until EmpRec.Next() = 0;
         end;
-
         Message(Format(JsonArray));
         exit(Format(JsonArray));
     end;
