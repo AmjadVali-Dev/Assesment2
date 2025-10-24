@@ -78,4 +78,48 @@ codeunit 50313 "Json Practice Employe"
         end;
         Message('Employee JSON import completed successfully!');
     end;
+
+
+    // procedure InsertEmployeeFromJson(JsonObjectData: Text[2048])
+    // var
+    //     EmployeeRec: Record "Employe DetailssA";
+    //     ObjectManagement: Codeunit "JSON Management";
+    //     EmployeeManagement: Codeunit "JSON Management";
+    //     JsonText: Text;
+    //     ArrayText: Text;
+    //     i: Integer;
+    //     EmpIDL: Text;
+    //     EmpNameL: Text;
+    //     DepartmentL: Text;
+    //     SalaryL: Text;
+    //     JoiningDateL: Text;
+    //     BonusL: Text;
+    //     DesignationL: Text;
+    // begin
+    //     ObjectManagement.InitializeObject(JsonObjectData);
+    //     if ObjectManagement.GetArrayPropertyValueAsStringByName('Data', ArrayText) then begin
+    //         EmployeeManagement.InitializeCollection(ArrayText);
+    //         for i := 0 to EmployeeManagement.GetCollectionCount() - 1 do begin
+    //             EmployeeManagement.GetObjectFromCollectionByIndex(JsonText, i);
+    //             ObjectManagement.InitializeObject(JsonText);
+    //             EmployeeRec.Init();
+    //             ObjectManagement.GetArrayPropertyValueAsStringByName('EmpID', EmpIDL);
+    //             EmployeeRec.EmpID := EmpIDL;
+    //             ObjectManagement.GetStringPropertyValueByName('EmpName', EmpNameL);
+    //             EmployeeRec.EmpName := EmpNameL;
+    //             ObjectManagement.GetStringPropertyValueByName('Department', DepartmentL);
+    //             EmployeeRec.Department := DepartmentL;
+    //             ObjectManagement.GetStringPropertyValueByName('Salary', SalaryL);
+    //             Evaluate(EmployeeRec.Salary, SalaryL);
+    //             ObjectManagement.GetStringPropertyValueByName('JoiningDate', JoiningDateL);
+    //             Evaluate(EmployeeRec.JoiningDate, JoiningDateL);
+    //             ObjectManagement.GetStringPropertyValueByName('Bonus', BonusL);
+    //             Evaluate(EmployeeRec.Bonus, BonusL);
+    //             ObjectManagement.GetStringPropertyValueByName('Designation', DesignationL);
+    //             EmployeeRec.Designation := DesignationL;
+    //             EmployeeRec.Insert();
+    //         end;
+    //     end;
+    //     Message('The Data SuccessFully Inserted');
+    // end;
 }

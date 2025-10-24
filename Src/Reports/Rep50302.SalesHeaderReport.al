@@ -7,71 +7,62 @@ report 50302 "Sales Header Report"
     RDLCLayout = 'Src\Reports\SalesHeaderReport.rdl';
     dataset
     {
-        dataitem(Customer; Customer)
+        // dataitem(SalesHeader; "Sales Header")
+        // {
+        //     column(DocumentType; "Document Type")
+        //     {
+        //     }
+        //     column(SelltoCustomerNo; "Sell-to Customer No.")
+        //     {
+        //     }
+        //     column(No; "No.")
+        //     {
+        //     }
+        //     column(PostingDate; "Posting Date")
+        //     {
+        //     }
+        //     column(OrderDate; "Order Date")
+        //     {
+        //     }
+        //     column(ShipmentMethodCode; "Shipment Method Code")
+        //     {
+        //     }
+        //     column(SelltoCustomerName; "Sell-to Customer Name")
+        //     {
+        //     }
+        dataitem("Sales Line"; "Sales Line")
         {
+            // DataItemLink = "Document No." = field("No."), "Document Type" = field("Document Type");
             column(No_; "No.")
             {
             }
-
-            dataitem(SalesHeader; "Sales Header")
+            column(Quantity; Quantity)
             {
-                DataItemLink = "Sell-to Customer No." = field("No.");
-                column(DocumentType; "Document Type")
-                {
-                }
-                column(SelltoCustomerNo; "Sell-to Customer No.")
-                {
-                }
-                column(No; "No.")
-                {
-                }
-                column(PostingDate; "Posting Date")
-                {
-                }
-                column(OrderDate; "Order Date")
-                {
-                }
-                column(ShipmentMethodCode; "Shipment Method Code")
-                {
-                }
-                column(SelltoCustomerName; "Sell-to Customer Name")
-                {
-                }
-                trigger OnPreDataItem()
-                begin
-                    SetCurrentKey("Posting Date");
-                    Ascending(false);
-                    Counter := 0;
-                    SetRange("Posting Date", StartDate, EndDate);
-                end;
             }
-
-        }
-    }
-    requestpage
-    {
-        layout
-        {
-            area(content)
+            column(Line_Amount; "Line Amount")
             {
-                field(StartDate; StartDate)
-                {
-                    ApplicationArea = All;
-                    Caption = 'From Date';
-                }
-                field(EndDate; EndDate)
-                {
-                    ApplicationArea = All;
-                    Caption = 'To Date';
-                }
-
             }
+            column(Description; Description)
+            {
+            }
+            trigger OnPreDataItem()
+            begin
+                Counter := 0;
+            end;
+
+            trigger OnAfterGetRecord()
+            begin
+                Counter := Counter + 1;
+                if counter > 10 then
+                    CurrReport.Break();
+            end;
         }
+        // }
+
     }
+
+
 
     var
         Counter: Integer;
-        StartDate: Date;
-        EndDate: Date;
-
 }

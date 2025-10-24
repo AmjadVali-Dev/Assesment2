@@ -8,7 +8,6 @@ report 50301 "Pending Purchase RequisationA"
 
     dataset
     {
-
         dataitem(PurchaseRequisitionLine; "Purchase Requisition Line")
         {
             DataItemTableView = where("Purchase Order No." = const(''), "Purchase Order Line No." = const(0));

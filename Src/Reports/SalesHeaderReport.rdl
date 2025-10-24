@@ -37,36 +37,6 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox16">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>No</Value>
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox16</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
                         <Textbox Name="Textbox18">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -74,7 +44,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Document Type</Value>
+                                  <Value>No </Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -104,7 +74,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Sellto Customer No</Value>
+                                  <Value>Quantity</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -127,21 +97,51 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox1">
+                        <Textbox Name="Textbox22">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Posting Date</Value>
+                                  <Value>Line Amount</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox1</rd:DefaultName>
+                          <rd:DefaultName>Textbox22</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox24">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Description</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox24</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -162,21 +162,21 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="No">
+                        <Textbox Name="No_">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!No.Value</Value>
+                                  <Value>=Fields!No_.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>No</rd:DefaultName>
+                          <rd:DefaultName>No_</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -192,21 +192,21 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="DocumentType">
+                        <Textbox Name="Quantity">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!DocumentType.Value</Value>
+                                  <Value>=Fields!Quantity.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>DocumentType</rd:DefaultName>
+                          <rd:DefaultName>Quantity</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -222,21 +222,21 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="SelltoCustomerNo">
+                        <Textbox Name="Line_Amount">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!SelltoCustomerNo.Value</Value>
+                                  <Value>=Fields!Line_Amount.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>SelltoCustomerNo</rd:DefaultName>
+                          <rd:DefaultName>Line_Amount</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -252,21 +252,21 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="PostingDate">
+                        <Textbox Name="Description">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!PostingDate.Value</Value>
+                                  <Value>=Fields!Description.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>PostingDate</rd:DefaultName>
+                          <rd:DefaultName>Description</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -303,8 +303,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
-            <Top>1.59314cm</Top>
-            <Left>3.37467cm</Left>
+            <Top>1.29328cm</Top>
+            <Left>2.26342cm</Left>
             <Height>1.2cm</Height>
             <Width>10cm</Width>
             <Style>
@@ -317,43 +317,12 @@
         <Height>5.08cm</Height>
         <Style />
       </Body>
-      <Width>19.82231cm</Width>
+      <Width>19.0462cm</Width>
       <Page>
         <PageHeader>
-          <Height>2.54cm</Height>
+          <Height>5.78556cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
-          <ReportItems>
-            <Textbox Name="Textbox2">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Fields!No_.Value</Value>
-                      <Style />
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>0.99342cm</Top>
-              <Left>6.76134cm</Left>
-              <Height>0.6cm</Height>
-              <Width>2.5cm</Width>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-          </ReportItems>
           <Style>
             <Border>
               <Style>None</Style>
@@ -370,7 +339,7 @@
             </Border>
           </Style>
         </PageFooter>
-        <PageHeight>29.7cm</PageHeight>
+        <PageHeight>29cm</PageHeight>
         <PageWidth>21cm</PageWidth>
         <LeftMargin>0.5cm</LeftMargin>
         <RightMargin>0.5cm</RightMargin>
@@ -426,26 +395,20 @@ End Function
         <Field Name="No_">
           <DataField>No_</DataField>
         </Field>
-        <Field Name="DocumentType">
-          <DataField>DocumentType</DataField>
+        <Field Name="Quantity">
+          <DataField>Quantity</DataField>
         </Field>
-        <Field Name="SelltoCustomerNo">
-          <DataField>SelltoCustomerNo</DataField>
+        <Field Name="QuantityFormat">
+          <DataField>QuantityFormat</DataField>
         </Field>
-        <Field Name="No">
-          <DataField>No</DataField>
+        <Field Name="Line_Amount">
+          <DataField>Line_Amount</DataField>
         </Field>
-        <Field Name="PostingDate">
-          <DataField>PostingDate</DataField>
+        <Field Name="Line_AmountFormat">
+          <DataField>Line_AmountFormat</DataField>
         </Field>
-        <Field Name="OrderDate">
-          <DataField>OrderDate</DataField>
-        </Field>
-        <Field Name="ShipmentMethodCode">
-          <DataField>ShipmentMethodCode</DataField>
-        </Field>
-        <Field Name="SelltoCustomerName">
-          <DataField>SelltoCustomerName</DataField>
+        <Field Name="Description">
+          <DataField>Description</DataField>
         </Field>
       </Fields>
       <Query>
