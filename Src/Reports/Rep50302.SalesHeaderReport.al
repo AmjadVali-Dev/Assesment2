@@ -9,7 +9,10 @@ report 50302 "Sales Header Report"
     {
         dataitem(Customer; Customer)
         {
-            column(No_; "No.") { }
+            column(No_; "No.")
+            {
+            }
+
             dataitem(SalesHeader; "Sales Header")
             {
                 DataItemLink = "Sell-to Customer No." = field("No.");
@@ -36,21 +39,39 @@ report 50302 "Sales Header Report"
                 }
                 trigger OnPreDataItem()
                 begin
+                    SetCurrentKey("Posting Date");
+                    Ascending(false);
                     Counter := 0;
+                    SetRange("Posting Date", StartDate, EndDate);
                 end;
+            }
 
-                trigger OnAfterGetRecord()
+        }
+    }
+    requestpage
+    {
+        layout
+        {
+            area(content)
+            {
+                field(StartDate; StartDate)
+                {
+                    ApplicationArea = All;
+                    Caption = 'From Date';
+                }
+                field(EndDate; EndDate)
+                {
+                    ApplicationArea = All;
+                    Caption = 'To Date';
+                }
 
-                begin
-                    Counter := Counter + 1;
-                    if Counter > 10 then begin
-                        CurrReport.Break();
-                    end;
-                end;
             }
         }
     }
+
     var
         Counter: Integer;
+        StartDate: Date;
+        EndDate: Date;
 
 }
