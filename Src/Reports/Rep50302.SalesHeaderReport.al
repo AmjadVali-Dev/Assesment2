@@ -8,7 +8,7 @@ report 50302 "Sales Header Report"
     dataset
     {
         // dataitem(SalesHeader; "Sales Header")
-        // {
+        // {dr
         //     column(DocumentType; "Document Type")
         //     {
         //     }
@@ -60,9 +60,6 @@ report 50302 "Sales Header Report"
         // }
 
     }
-
-
-
     var
         Counter: Integer;
 }

@@ -23,4 +23,14 @@ pageextension 50315 "Sales Order List Exe" extends "Sales Order List"
             }
         }
     }
+
+    trigger OnOpenPage()
+    var
+        SalesHeaderRec: Record "Sales Header";
+        RecRef: RecordRef;
+    begin
+        SalesHeaderRec.SetRange("Sell-to Customer No.", '10000');
+        RecRef.SetTable(SalesHeaderRec);
+        Message('Total Records for Sell-to Customer No. 10000: %1', RecRef.Count());
+    end;
 }

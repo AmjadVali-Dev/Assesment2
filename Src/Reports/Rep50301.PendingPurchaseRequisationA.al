@@ -42,4 +42,5 @@ report 50301 "Pending Purchase RequisationA"
         CreatedDateG: Date;
         ReleasedByG: Code[20];
         ReleasedDateG: Date;
+
 }
