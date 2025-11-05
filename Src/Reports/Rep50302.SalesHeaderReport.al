@@ -23,17 +23,17 @@ report 50302 "Sales Header Report"
                 column(Quantity; Quantity) { }
                 column(Line_Amount; "Line Amount") { }
                 column(Description; Description) { }
-                trigger OnPreDataItem()
-                begin
-                    Counter := 0;
-                end;
+                // trigger OnPreDataItem()
+                // begin
+                //     Counter := 0;
+                // end;
 
-                trigger OnAfterGetRecord()
-                begin
-                    Counter := Counter + 1;
-                    if counter > 10 then
-                        CurrReport.Break();
-                end;
+                // trigger OnAfterGetRecord()
+                // begin
+                //     Counter := Counter + 1;
+                //     if counter > 10 then
+                //         CurrReport.Break();
+                // end;
             }
         }
 
