@@ -21,4 +21,5 @@ page 50317 "Get Text"
 
     var
         JsonText: Text;
+
 }
