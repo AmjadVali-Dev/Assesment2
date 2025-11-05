@@ -5,6 +5,7 @@ table 50300 "Purchase Requisition Header"
 
     fields
     {
+        //Hello this is Feature Branch
         field(1; "No."; Code[20])
         {
             Caption = 'No.';
