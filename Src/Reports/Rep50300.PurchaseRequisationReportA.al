@@ -7,6 +7,7 @@ report 50300 "Purchase Requisation Report A"
     RDLCLayout = 'Src\Reports\PurchaseRequisationreportA.rdl';
     dataset
     {
+        //Hello this is little Change I made
         dataitem("Purchase Requisition Header"; "Purchase Requisition Header")
         {
             column(No_; "No.") { }
@@ -27,6 +28,7 @@ report 50300 "Purchase Requisation Report A"
                 column(Description; Description) { }
                 column(Quantity; Quantity) { }
                 column(Unit_Of_Measure_Code; "Unit Of Measure Code") { }
+
             }
         }
     }
