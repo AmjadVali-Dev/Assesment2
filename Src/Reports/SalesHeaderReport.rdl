@@ -11,55 +11,6 @@
       <rd:DataSourceID>8135c26a-bdfa-456d-8b57-63013e469017</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="DocumentType">
-          <DataField>DocumentType</DataField>
-        </Field>
-        <Field Name="SelltoCustomerNo">
-          <DataField>SelltoCustomerNo</DataField>
-        </Field>
-        <Field Name="No">
-          <DataField>No</DataField>
-        </Field>
-        <Field Name="PostingDate">
-          <DataField>PostingDate</DataField>
-        </Field>
-        <Field Name="OrderDate">
-          <DataField>OrderDate</DataField>
-        </Field>
-        <Field Name="ShipmentMethodCode">
-          <DataField>ShipmentMethodCode</DataField>
-        </Field>
-        <Field Name="SelltoCustomerName">
-          <DataField>SelltoCustomerName</DataField>
-        </Field>
-        <Field Name="No_">
-          <DataField>No_</DataField>
-        </Field>
-        <Field Name="Quantity">
-          <DataField>Quantity</DataField>
-        </Field>
-        <Field Name="QuantityFormat">
-          <DataField>QuantityFormat</DataField>
-        </Field>
-        <Field Name="Line_Amount">
-          <DataField>Line_Amount</DataField>
-        </Field>
-        <Field Name="Line_AmountFormat">
-          <DataField>Line_AmountFormat</DataField>
-        </Field>
-        <Field Name="Description">
-          <DataField>Description</DataField>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -115,11 +66,11 @@
                                             <rd:DefaultName>Textbox50</rd:DefaultName>
                                             <Style>
                                               <Border>
-                                                <Style>Solid</Style>
+                                                <Style>None</Style>
                                               </Border>
                                               <TopBorder>
                                                 <Color>Black</Color>
-                                                <Style>Solid</Style>
+                                                <Style>None</Style>
                                                 <Width>1pt</Width>
                                               </TopBorder>
                                               <BottomBorder>
@@ -129,12 +80,12 @@
                                               </BottomBorder>
                                               <LeftBorder>
                                                 <Color>Black</Color>
-                                                <Style>Solid</Style>
+                                                <Style>None</Style>
                                                 <Width>1pt</Width>
                                               </LeftBorder>
                                               <RightBorder>
                                                 <Color>Black</Color>
-                                                <Style>Solid</Style>
+                                                <Style>None</Style>
                                                 <Width>1pt</Width>
                                               </RightBorder>
                                               <PaddingLeft>2pt</PaddingLeft>
@@ -168,7 +119,7 @@
                                               </Border>
                                               <TopBorder>
                                                 <Color>Black</Color>
-                                                <Style>Solid</Style>
+                                                <Style>None</Style>
                                                 <Width>1pt</Width>
                                               </TopBorder>
                                               <BottomBorder>
@@ -178,12 +129,12 @@
                                               </BottomBorder>
                                               <LeftBorder>
                                                 <Color>Black</Color>
-                                                <Style>Solid</Style>
+                                                <Style>None</Style>
                                                 <Width>1pt</Width>
                                               </LeftBorder>
                                               <RightBorder>
                                                 <Color>Black</Color>
-                                                <Style>Solid</Style>
+                                                <Style>None</Style>
                                                 <Width>1pt</Width>
                                               </RightBorder>
                                               <PaddingLeft>2pt</PaddingLeft>
@@ -217,7 +168,7 @@
                                               </Border>
                                               <TopBorder>
                                                 <Color>Black</Color>
-                                                <Style>Solid</Style>
+                                                <Style>None</Style>
                                                 <Width>1pt</Width>
                                               </TopBorder>
                                               <BottomBorder>
@@ -227,12 +178,12 @@
                                               </BottomBorder>
                                               <LeftBorder>
                                                 <Color>Black</Color>
-                                                <Style>Solid</Style>
+                                                <Style>None</Style>
                                                 <Width>1pt</Width>
                                               </LeftBorder>
                                               <RightBorder>
                                                 <Color>Black</Color>
-                                                <Style>Solid</Style>
+                                                <Style>None</Style>
                                                 <Width>1pt</Width>
                                               </RightBorder>
                                               <PaddingLeft>2pt</PaddingLeft>
@@ -764,9 +715,9 @@
                             <Border>
                               <Style>None</Style>
                             </Border>
+                            <BackgroundColor>Yellow</BackgroundColor>
                           </Style>
                         </Rectangle>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -834,12 +785,6 @@
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParametersLayout>
-    <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
-    </GridLayoutDefinition>
-  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -879,4 +824,53 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="DocumentType">
+          <DataField>DocumentType</DataField>
+        </Field>
+        <Field Name="SelltoCustomerNo">
+          <DataField>SelltoCustomerNo</DataField>
+        </Field>
+        <Field Name="No">
+          <DataField>No</DataField>
+        </Field>
+        <Field Name="PostingDate">
+          <DataField>PostingDate</DataField>
+        </Field>
+        <Field Name="OrderDate">
+          <DataField>OrderDate</DataField>
+        </Field>
+        <Field Name="ShipmentMethodCode">
+          <DataField>ShipmentMethodCode</DataField>
+        </Field>
+        <Field Name="SelltoCustomerName">
+          <DataField>SelltoCustomerName</DataField>
+        </Field>
+        <Field Name="No_">
+          <DataField>No_</DataField>
+        </Field>
+        <Field Name="Quantity">
+          <DataField>Quantity</DataField>
+        </Field>
+        <Field Name="QuantityFormat">
+          <DataField>QuantityFormat</DataField>
+        </Field>
+        <Field Name="Line_Amount">
+          <DataField>Line_Amount</DataField>
+        </Field>
+        <Field Name="Line_AmountFormat">
+          <DataField>Line_AmountFormat</DataField>
+        </Field>
+        <Field Name="Description">
+          <DataField>Description</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>
