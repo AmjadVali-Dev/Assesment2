@@ -14,6 +14,11 @@ pageextension 50309 "Sales Order Exe" extends "Sales Order"
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Customer Name field.', Comment = '%';
             }
+            field("Field Test"; Rec."Field Test")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Field Test field.', Comment = '%';
+            }
         }
     }
     actions
