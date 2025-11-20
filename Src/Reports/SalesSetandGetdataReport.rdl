@@ -11,6 +11,37 @@
       <rd:DataSourceID>ebfe65f9-46e7-474e-b1d4-281757a6488c</rd:DataSourceID>
     </DataSource>
   </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+      <Fields>
+        <Field Name="SelltoCustomerNo">
+          <DataField>SelltoCustomerNo</DataField>
+        </Field>
+        <Field Name="No">
+          <DataField>No</DataField>
+        </Field>
+        <Field Name="PostingDate">
+          <DataField>PostingDate</DataField>
+        </Field>
+        <Field Name="No_">
+          <DataField>No_</DataField>
+        </Field>
+        <Field Name="Quantity">
+          <DataField>Quantity</DataField>
+        </Field>
+        <Field Name="QuantityFormat">
+          <DataField>QuantityFormat</DataField>
+        </Field>
+        <Field Name="Description">
+          <DataField>Description</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -242,159 +273,50 @@
             <Top>4.64467cm</Top>
             <Left>2.89842cm</Left>
             <Height>1.2cm</Height>
-            <Width>13.27736cm</Width>
+            <Width>13.27737cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
             </Style>
           </Tablix>
-          <Tablix Name="Tablix3">
-            <TablixBody>
-              <TablixColumns>
-                <TablixColumn>
-                  <Width>2.5cm</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>2.5cm</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>2.5cm</Width>
-                </TablixColumn>
-              </TablixColumns>
-              <TablixRows>
-                <TablixRow>
-                  <Height>0.6cm</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="No">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Code.SetDocNo(Fields!No.Value)</Value>
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>No</rd:DefaultName>
-                          <Visibility>
-                            <Hidden>true</Hidden>
-                          </Visibility>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="SelltoCustomerNo">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Code.SetCustomer(Fields!SelltoCustomerNo.Value)</Value>
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>SelltoCustomerNo</rd:DefaultName>
-                          <Visibility>
-                            <Hidden>true</Hidden>
-                          </Visibility>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="PostingDate">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Code.SetPDate(Fields!PostingDate.Value)</Value>
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>PostingDate</rd:DefaultName>
-                          <Visibility>
-                            <Hidden>true</Hidden>
-                          </Visibility>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-              </TablixRows>
-            </TablixBody>
-            <TablixColumnHierarchy>
-              <TablixMembers>
-                <TablixMember />
-                <TablixMember />
-                <TablixMember />
-              </TablixMembers>
-            </TablixColumnHierarchy>
-            <TablixRowHierarchy>
-              <TablixMembers>
-                <TablixMember>
-                  <Group Name="Details2" />
-                </TablixMember>
-              </TablixMembers>
-            </TablixRowHierarchy>
-            <DataSetName>DataSet_Result</DataSetName>
-            <Top>2.26342cm</Top>
-            <Left>4.8387cm</Left>
+          <Textbox Name="Textbox1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Code.SetData(
+    CStr(Fields!No.Value) 
+    &amp; Chr(177) &amp;
+    CStr(Fields!PostingDate.Value) 
+    &amp; Chr(177) &amp;
+    CStr(Fields!SelltoCustomerNo.Value)
+) &amp; ""</Value>
+                    <Style>
+                      <FontSize>1pt</FontSize>
+                      <Color>White</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>0.41134cm</Top>
+            <Left>0.81703cm</Left>
             <Height>0.6cm</Height>
-            <Width>7.5cm</Width>
+            <Width>0.73611cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
+              <Border />
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
             </Style>
-          </Tablix>
+          </Textbox>
         </ReportItems>
         <Height>7.9375cm</Height>
         <Style />
@@ -413,7 +335,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Code.GetDocNo()</Value>
+                      <Value>=Code.GetData(1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -442,7 +364,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Code.GetCustomer()</Value>
+                      <Value>=Code.GetData(2)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -472,7 +394,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Code.GetPDate()</Value>
+                      <Value>=Code.GetData(3)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -481,7 +403,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
               <Top>1.79021cm</Top>
-              <Left>13.67578cm</Left>
+              <Left>13.67579cm</Left>
               <Height>0.6cm</Height>
               <Width>2.5cm</Width>
               <ZIndex>2</ZIndex>
@@ -523,104 +445,81 @@
       </Page>
     </ReportSection>
   </ReportSections>
-  <Code>Public Function BlankZero(ByVal Value As Decimal)
-    if Value = 0 then
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
+  <Code>'===========================================
+' BLANK FUNCTIONS (KEEP THEM)
+'===========================================
+Public Function BlankZero(ByVal Value As Decimal)
+    If Value = 0 Then
         Return ""
-    end if
+    End If
     Return Value
 End Function
 
 Public Function BlankPos(ByVal Value As Decimal)
-    if Value &gt; 0 then
+    If Value &gt; 0 Then
         Return ""
-    end if
+    End If
     Return Value
 End Function
 
 Public Function BlankZeroAndPos(ByVal Value As Decimal)
-    if Value &gt;= 0 then
+    If Value &gt;= 0 Then
         Return ""
-    end if
+    End If
     Return Value
 End Function
 
 Public Function BlankNeg(ByVal Value As Decimal)
-    if Value &lt; 0 then
+    If Value &lt; 0 Then
         Return ""
-    end if
+    End If
     Return Value
 End Function
 
 Public Function BlankNegAndZero(ByVal Value As Decimal)
-    if Value &lt;= 0 then
+    If Value &lt;= 0 Then
         Return ""
-    end if
+    End If
     Return Value
 End Function
 
-Dim DocNo As String
-Dim Customer As String
-Dim PDate As String
 
-Function SetDocNo(v As String)
-    DocNo = v
-    Return v
+'===========================================
+' FINAL SETDATA / GETDATA FOR SALES HEADER
+' KEEP ONLY THIS VERSION
+'===========================================
+Shared HeaderData As String
+
+Public Function SetData(NewData As Object) As Boolean
+    If NewData Is Nothing OrElse CStr(NewData) = "" Then
+        Return False
+    End If
+
+    HeaderData = CStr(NewData)
+    Return True
 End Function
 
-Function SetCustomer(v As String)
-    Customer = v
-    Return v
-End Function
+Public Function GetData(Num As Integer) As Object
+    If HeaderData Is Nothing OrElse HeaderData = "" Then
+        Return ""
+    End If
 
-Function SetPDate(v As String)
-    PDate = v
-    Return v
-End Function
+    Dim arr() As String = Split(HeaderData, Chr(177))
 
-Function GetDocNo()
-    Return DocNo
-End Function
+    If Num - 1 &gt;= 0 AndAlso Num - 1 &lt; arr.Length Then
+        Return arr(Num - 1)
+    End If
 
-Function GetCustomer()
-    Return Customer
-End Function
-
-Function GetPDate()
-    Return PDate
+    Return ""
 End Function</Code>
   <Language>=User!Language</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Fields>
-        <Field Name="SelltoCustomerNo">
-          <DataField>SelltoCustomerNo</DataField>
-        </Field>
-        <Field Name="No">
-          <DataField>No</DataField>
-        </Field>
-        <Field Name="PostingDate">
-          <DataField>PostingDate</DataField>
-        </Field>
-        <Field Name="No_">
-          <DataField>No_</DataField>
-        </Field>
-        <Field Name="Quantity">
-          <DataField>Quantity</DataField>
-        </Field>
-        <Field Name="QuantityFormat">
-          <DataField>QuantityFormat</DataField>
-        </Field>
-        <Field Name="Description">
-          <DataField>Description</DataField>
-        </Field>
-      </Fields>
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-    </DataSet>
-  </DataSets>
 </Report>

@@ -36,8 +36,6 @@ codeunit 50310 "Employe Details Exel Export"
     //     TempBufferRec.OpenExcel();
     // end;
 
-
-
     procedure Exel_Export()
     var
         TempBufferRec: Record "Excel Buffer" temporary;

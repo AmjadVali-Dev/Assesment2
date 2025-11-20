@@ -197,7 +197,6 @@ codeunit 50305 "Json Practice 2"
     procedure ReadSaleOrder(SalesHeader: Record "Sales Header")
     var
         SalesLine: Record "Sales Line";
-        JsonMgnt: Codeunit "JSON Management";
         JsonObject: JsonObject;
         LineObject: JsonObject;
         Array: JsonArray;

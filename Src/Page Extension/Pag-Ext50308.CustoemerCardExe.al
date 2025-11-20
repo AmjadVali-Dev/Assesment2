@@ -148,6 +148,18 @@ pageextension 50308 "Custoemer Card Exe" extends "Customer Card"
                     JsonCreationRec.ReadCustomerJson(JsonText);
                 end;
             }
+            action("Count The Sales Orders")
+            {
+                ApplicationArea = All;
+                Image = New;
+                Caption = 'Count The sales Orders';
+                trigger OnAction()
+                var
+                    CodeunitRec: Codeunit DeleteNote;
+                begin
+                    CodeunitRec.CalculateTotalSalesOrders(Rec);
+                end;
+            }
         }
     }
 }

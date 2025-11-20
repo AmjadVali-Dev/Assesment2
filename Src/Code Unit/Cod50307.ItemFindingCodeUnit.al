@@ -19,4 +19,18 @@ codeunit 50307 "Item Finding Code Unit"
             Message('No sales found for Item %1', ItemNo);
     end;
 
+
+    procedure ItemCount(ItemRec: Record Item)
+    var
+        SaleslineRec: Record "Sales Line";
+        Count: Integer;
+    begin
+        SaleslineRec.SetRange("No.", ItemRec."No.");
+        if SaleslineRec.FindSet() then begin
+            repeat
+                Count := Count + 1;
+            until SaleslineRec.Next() = 0;
+        end;
+        Message('The count Of The Items %1', Count);
+    end;
 }

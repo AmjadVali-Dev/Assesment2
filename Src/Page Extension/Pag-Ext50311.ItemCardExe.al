@@ -16,6 +16,18 @@ pageextension 50311 "Item Card Exe" extends "Item Card"
                     CodeunitRec.ShowCustomersForItem(Rec."No.");
                 end;
             }
+            action("Finding How many Lines")
+            {
+                ApplicationArea = All;
+                Image = Find;
+                Caption = 'finding';
+                trigger OnAction()
+                var
+                    codeunitRec: Codeunit "Item Finding Code Unit";
+                begin
+                    codeunitRec.ItemCount(Rec);
+                end;
+            }
         }
     }
 }

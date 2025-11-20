@@ -27,6 +27,11 @@ tableextension 50307 "Sales Header nExe" extends "Sales Header"
             Caption = 'Field Test';
             DataClassification = ToBeClassified;
         }
+        field(50303; "Cust Name"; Text[50])
+        {
+            Caption = 'Customer Name';
+            DataClassification = ToBeClassified;
+        }
 
     }
 }
