@@ -7,7 +7,6 @@ pageextension 50330 "Business Manager Role Exe" extends "Business Manager Role C
             group("Teacher Management")
             {
                 Caption = 'Teacher Management';
-                Image = Education; // optional icon
                 action(TeacherMaster)
                 {
                     Caption = 'Teacher Master';
