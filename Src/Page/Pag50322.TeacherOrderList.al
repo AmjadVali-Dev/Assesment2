@@ -6,6 +6,8 @@ page 50322 "Teacher Order List"
     SourceTable = "Teacher Header";
     UsageCategory = Lists;
     CardPageId = "Teacher Order";
+    SourceTableView = where("Document Type" = filter(Assignment));
+    RefreshOnActivate = true;
     layout
     {
         area(Content)
@@ -36,10 +38,10 @@ page 50322 "Teacher Order List"
                 {
                     ToolTip = 'Specifies the value of the Department field.', Comment = '%';
                 }
-                field("Total Hours "; Rec."Total Hours ")
-                {
-                    ToolTip = 'Specifies the value of the Total Hours field.', Comment = '%';
-                }
+                // field("Total Hours "; Rec."Total Hours ")
+                // {
+                //     ToolTip = 'Specifies the value of the Total Hours field.', Comment = '%';
+                // }
                 field(Status; Rec.Status)
                 {
                     ToolTip = 'Specifies the value of the Status field.', Comment = '%';
@@ -56,6 +58,121 @@ page 50322 "Teacher Order List"
                 {
                     ToolTip = 'Specifies the value of the Created By field.', Comment = '%';
                 }
+                field("Approval Status"; Rec."Approval Status")
+                {
+                    ToolTip = 'Specifies the value of the Approval Status field.', Comment = '%';
+                }
+                field("Approved By"; Rec."Approved By")
+                {
+                    ToolTip = 'Specifies the value of the Approved By field.', Comment = '%';
+                }
+                field("Approved On"; Rec."Approved On")
+                {
+                    ToolTip = 'Specifies the value of the Approved On field.', Comment = '%';
+                }
+                field("Teacher Image"; Rec."Teacher Image")
+                {
+                    ToolTip = 'Specifies the value of the Teacher Image field.', Comment = '%';
+                }
+                field("Teacher Photo"; Rec."Teacher Photo")
+                {
+                    ToolTip = 'Specifies the value of the Teacher Photo field.', Comment = '%';
+                    ShowCaption = true;
+                }
+                field("Total Hours2"; Rec."Total Hours2")
+                {
+                    ToolTip = 'Specifies the value of the Total Hours2 field.', Comment = '%';
+                    trigger OnDrillDown()
+                    var
+                        Orderline: Record "Teacher Line";
+                    begin
+                        Orderline.SetRange("Document No.", Rec."No.");
+                        Orderline.SetRange("Document Type", Orderline."Document Type"::Assignment);
+                        PAGE.Run(PAGE::"Teacher Line List", Orderline);
+                    end;
+                }
+            }
+        }
+        area(FactBoxes)
+        {
+            part(Attachments; "Doc. Attachment List Factbox")
+            {
+                ApplicationArea = All;
+                Caption = 'Attachments';
+                SubPageLink = "Table ID" = const(50308), "No." = field("No.");
+            }
+
+            systempart(Links; Links)
+            {
+                ApplicationArea = All;
+            }
+
+            systempart(Notes; Notes)
+            {
+                ApplicationArea = All;
+            }
+        }
+
+    }
+
+    actions
+    {
+        area(Processing)
+        {
+            action("Export Excel")
+            {
+                ApplicationArea = All;
+                Image = Export;
+                Caption = 'Export Excel';
+                trigger OnAction()
+                var
+                    CodeunitRec: Codeunit "Excel Export";
+                begin
+                    CodeunitRec.Excel_Export();
+                end;
+            }
+            action("Import Excel")
+            {
+                ApplicationArea = All;
+                Image = Import;
+                Caption = 'Import Excel';
+                trigger OnAction()
+                var
+                    CodeunitRec: Codeunit "Excel Import";
+                begin
+                    CodeunitRec.UploadStream();
+                    CodeunitRec.Import_Excel();
+                end;
+            }
+            action("Export Json")
+            {
+                ApplicationArea = All;
+                Image = Export;
+                Caption = 'Export Json';
+                trigger OnAction()
+                var
+                    CodeunitRec: Codeunit "All Teacher Export";
+                    jsonText: Text;
+                begin
+                    jsonText := CodeunitRec.CreateAllTeacherJson();
+                    CodeunitRec.DownloadJson(jsonText);
+                end;
+            }
+            action("Import Data Using text")
+            {
+                ApplicationArea = All;
+                Image = New;
+                Caption = 'Import Data Using text';
+                trigger OnAction()
+                var
+                    JsonTextL: Text[14100];
+                    JsonTextRec: Page "Get The Data For Teacher";
+                    JsonCodeunit: Codeunit "All Teacher Export";
+                begin
+                    JsonTextRec.RunModal();
+                    JsonTextL := JsonTextRec.Transfer();
+                    JsonCodeunit.ImportTeacherFromJson(JsonTextL);
+                end;
             }
         }
     }

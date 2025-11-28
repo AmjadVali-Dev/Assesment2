@@ -35,4 +35,30 @@ codeunit 50300 "Reuisition No Gen"
             TeacherHeader."No." := NoSeriesRec.GetNextNo(SalesandReceive."Teacher No. Gen", Today(), true);
         end;
     end;
+
+    procedure Shipment_No_Gen(var ShipmentHeader: Record "Tacher Shipment Header")
+    var
+        NoSeriesRec: Codeunit "No. Series";
+        SalesandReceive: Record "Sales & Receivables Setup";
+    begin
+        if ShipmentHeader."Document No." = '' then begin
+            SalesandReceive.Get();
+            SalesandReceive.TestField("Shipment No. Gen");
+            ShipmentHeader."Document No." := NoSeriesRec.GetNextNo(SalesandReceive."Shipment No. Gen", Today(), true);
+        end;
+    end;
+
+    procedure Invoice_No_Gen(var InvoiceHeader: Record "Teacher Invoice Header")
+    var
+        NoSeriesRec: Codeunit "No. Series";
+        SalesandReceive: Record "Sales & Receivables Setup";
+    begin
+        if InvoiceHeader."Document No." = '' then begin
+            SalesandReceive.Get();
+            SalesandReceive.TestField("INvoice No. Gen");
+            InvoiceHeader."Document No." := NoSeriesRec.GetNextNo(SalesandReceive."INvoice No. Gen", Today(), true);
+        end;
+    end;
+
+
 }

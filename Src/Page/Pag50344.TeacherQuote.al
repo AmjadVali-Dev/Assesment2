@@ -1,19 +1,19 @@
-page 50324 "Teacher Invoice List"
+page 50344 "Teacher Quote"
 {
     ApplicationArea = All;
-    Caption = 'Teacher Invoice List';
-    PageType = List;
+    Caption = 'Teacher Quote';
+    PageType = Document;
     SourceTable = "Teacher Header";
-    UsageCategory = Lists;
-    CardPageId = "Teacher Invoice";
-    SourceTableView = where("Document Type" = filter(Invoice));
+    SourceTableView = where("Document Type" = filter(Quote));
     RefreshOnActivate = true;
     layout
     {
         area(Content)
         {
-            repeater(General)
+            group(General)
             {
+                Caption = 'General';
+
                 field("Document Type"; Rec."Document Type")
                 {
                     ToolTip = 'Specifies the value of the Document Type field.', Comment = '%';
@@ -58,10 +58,42 @@ page 50324 "Teacher Invoice List"
                 {
                     ToolTip = 'Specifies the value of the Created By field.', Comment = '%';
                 }
-                field("Invoice No."; Rec."Invoice No.")
+                field("Approval Status"; Rec."Approval Status")
                 {
-                    ToolTip = 'Specifies the value of the Invoice No. field.', Comment = '%';
+                    ToolTip = 'Specifies the value of the Approval Status field.', Comment = '%';
                 }
+                field("Approved By"; Rec."Approved By")
+                {
+                    ToolTip = 'Specifies the value of the Approved By field.', Comment = '%';
+                }
+                field("Approved On"; Rec."Approved On")
+                {
+                    ToolTip = 'Specifies the value of the Approved On field.', Comment = '%';
+                }
+            }
+            part("Teacher Quote Order Subform"; "Teacher Quote Order Subform")
+            {
+                ApplicationArea = All;
+                SubPageLink = "Document No." = field("No."), "Document Type" = field("Document Type");
+            }
+        }
+    }
+    actions
+    {
+        area(Processing)
+        {
+            action("Convert Into Order")
+            {
+                ApplicationArea = All;
+                Image = Order;
+                Caption = 'Convert Into Order';
+                trigger OnAction()
+                var
+                    CodeunitRec: Codeunit "Teacher Quote Mgmt";
+                    NewOrder: Record "Teacher Header";
+                begin
+                    CodeunitRec.ConvertQuoteToOrder(Rec);
+                end;
             }
         }
     }

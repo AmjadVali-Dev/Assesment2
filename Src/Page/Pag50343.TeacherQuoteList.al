@@ -1,12 +1,12 @@
-page 50324 "Teacher Invoice List"
+page 50343 "Teacher Quote List"
 {
     ApplicationArea = All;
-    Caption = 'Teacher Invoice List';
+    Caption = 'Teacher Quote List';
     PageType = List;
     SourceTable = "Teacher Header";
     UsageCategory = Lists;
-    CardPageId = "Teacher Invoice";
-    SourceTableView = where("Document Type" = filter(Invoice));
+    CardPageId = "Teacher Quote";
+    SourceTableView = where("Document Type" = filter(Quote));
     RefreshOnActivate = true;
     layout
     {
@@ -58,9 +58,17 @@ page 50324 "Teacher Invoice List"
                 {
                     ToolTip = 'Specifies the value of the Created By field.', Comment = '%';
                 }
-                field("Invoice No."; Rec."Invoice No.")
+                field("Approval Status"; Rec."Approval Status")
                 {
-                    ToolTip = 'Specifies the value of the Invoice No. field.', Comment = '%';
+                    ToolTip = 'Specifies the value of the Approval Status field.', Comment = '%';
+                }
+                field("Approved By"; Rec."Approved By")
+                {
+                    ToolTip = 'Specifies the value of the Approved By field.', Comment = '%';
+                }
+                field("Approved On"; Rec."Approved On")
+                {
+                    ToolTip = 'Specifies the value of the Approved On field.', Comment = '%';
                 }
             }
         }

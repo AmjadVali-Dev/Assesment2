@@ -45,6 +45,14 @@ table 50307 "Master Table Teacher"
         {
             Caption = 'State';
         }
+        field(11; "No. of Orders"; Integer)
+        {
+            Caption = 'No.of Orders';
+            FieldClass = FlowField;
+            CalcFormula = Count("Teacher Header" WHERE("Teacher No." = FIELD("Teacher No."), "Document Type" = FILTER(Assignment)));
+
+        }
+
     }
     keys
     {

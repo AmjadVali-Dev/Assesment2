@@ -4,7 +4,7 @@ page 50329 "Teacher Invoice Order Subform"
     Caption = 'Teacher Invoice Order Subform';
     PageType = ListPart;
     SourceTable = "Teacher Line";
-    
+    SourceTableView = where("Document Type" = filter(Invoice));
     layout
     {
         area(Content)

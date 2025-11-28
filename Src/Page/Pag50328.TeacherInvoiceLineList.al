@@ -5,7 +5,8 @@ page 50328 "Teacher Invoice Line List"
     PageType = List;
     SourceTable = "Teacher Line";
     UsageCategory = Lists;
-    
+    SourceTableView = where("Document Type" = filter(Invoice));
+
     layout
     {
         area(Content)

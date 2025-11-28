@@ -53,7 +53,7 @@ table 50311 "Teacher Invoice Line"
     }
     keys
     {
-        key(PK; "Document Type", "Document No.")
+        key(PK; "Document Type", "Document No.", "Line No")
         {
             Clustered = true;
         }

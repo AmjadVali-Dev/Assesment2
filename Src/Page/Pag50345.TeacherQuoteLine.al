@@ -1,11 +1,10 @@
-page 50326 "Teacher Line List"
+page 50345 "Teacher Quote Line"
 {
     ApplicationArea = All;
-    Caption = 'Teacher Line List';
+    Caption = 'Teacher Quote Line';
     PageType = List;
     SourceTable = "Teacher Line";
-    UsageCategory = Lists;
-
+    SourceTableView = where("Document Type" = filter(Quote));
     layout
     {
         area(Content)

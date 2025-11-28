@@ -2,7 +2,8 @@ table 50308 "Teacher Header"
 {
     Caption = 'Teacher Header';
     DataClassification = ToBeClassified;
-
+    LookupPageId = "Subject Master List";
+    DrillDownPageId = "Subject Master List";
     fields
     {
         field(1; "Document Type"; Enum "Document Type Teacher")
@@ -65,6 +66,39 @@ table 50308 "Teacher Header"
             Caption = 'Invoice No.';
             AutoIncrement = true;
         }
+        field(13; "Approval Status"; Enum "Teacher Approval Status")
+        {
+            Caption = 'Approval Status';
+            DataClassification = ToBeClassified;
+        }
+
+        field(14; "Approved By"; Code[50])
+        {
+            Caption = 'Approved By';
+            Editable = false;
+        }
+
+        field(15; "Approved On"; DateTime)
+        {
+            Caption = 'Approved On';
+            Editable = false;
+        }
+        field(16; "Teacher Image"; BLOB)
+        {
+            Caption = 'Teacher Image';
+            SubType = Bitmap;
+        }
+        field(17; "Teacher Photo"; Media)
+        {
+            Caption = 'Teacher Photo';
+        }
+        field(18; "Total Hours2"; Decimal)
+        {
+            Caption = 'Total Hours2';
+            FieldClass = FlowField;
+            CalcFormula = sum("Teacher Line"."Hours Assained" where("Document Type" = filter(Assignment), "Document No." = field("No.")));
+        }
+
     }
     keys
     {
@@ -85,5 +119,23 @@ table 50308 "Teacher Header"
             "Created By" := UserId();
         if "Total Hours " = 0 then
             "Total Hours " := 8;
+    end;
+
+    procedure UpdateTotalHoursFromLines()
+    var
+        TeacherLineRec: Record "Teacher Line";
+        HoursTotal: Decimal;
+    begin
+        HoursTotal := 0;
+
+        TeacherLineRec.SetRange("Document Type", "Document Type");
+        TeacherLineRec.SetRange("Document No.", "No.");
+
+        if TeacherLineRec.FindSet() then
+            repeat
+                HoursTotal += TeacherLineRec."Hours Assained";
+            until TeacherLineRec.Next() = 0;
+
+        "Total Hours " := HoursTotal;
     end;
 }

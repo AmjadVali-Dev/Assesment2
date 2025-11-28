@@ -59,6 +59,21 @@ pageextension 50330 "Business Manager Role Exe" extends "Business Manager Role C
                     Caption = 'Subject Master';
                     RunObject = Page "Subject Master List";
                 }
+                action(TeacherLedgerEntry)
+                {
+                    Caption = 'Teacher Ledger Entry';
+                    RunObject = Page "Teacher Ledger Entry List";
+                }
+                action(TeacherReport)
+                {
+                    Caption = 'Teacher Order Report';
+                    RunObject = Report "Teacher Header Report";
+                }
+                action(TeacherQuote)
+                {
+                    Caption = 'Teacher Quote List';
+                    RunObject = page "Teacher Quote List";
+                }
             }
         }
     }

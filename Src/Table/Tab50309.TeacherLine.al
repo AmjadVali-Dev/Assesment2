@@ -28,6 +28,7 @@ table 50309 "Teacher Line"
                 if SubjectRec.Get("Subject Code ") then
                     "Subject Name" := SubjectRec."Subject Name";
             end;
+
         }
         field(5; "Subject Name"; Text[50])
         {
@@ -36,6 +37,11 @@ table 50309 "Teacher Line"
         field(6; "Hours Assained"; Decimal)
         {
             Caption = 'Hours Assained';
+            trigger OnValidate()
+            begin
+                if Rec."Hours Assained" > 8 then
+                    Error('Please enter a value less than or equal to 8 hours');
+            end;
         }
         field(7; "Class Date"; Date)
         {

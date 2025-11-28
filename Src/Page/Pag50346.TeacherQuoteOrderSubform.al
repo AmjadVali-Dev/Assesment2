@@ -1,11 +1,10 @@
-page 50326 "Teacher Line List"
+page 50346 "Teacher Quote Order Subform"
 {
     ApplicationArea = All;
-    Caption = 'Teacher Line List';
-    PageType = List;
+    Caption = 'Teacher Quote Order Subform';
+    PageType = ListPart;
     SourceTable = "Teacher Line";
-    UsageCategory = Lists;
-
+    SourceTableView = where("Document Type" = filter(Quote));
     layout
     {
         area(Content)

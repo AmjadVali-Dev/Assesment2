@@ -14,6 +14,16 @@ pageextension 50312 "Sales & Receive Exe" extends "Sales & Receivables Setup"
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Teacher No. Gen field.', Comment = '%';
             }
+            field("INvoice No. Gen"; Rec."INvoice No. Gen")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Invoice No. Gen field.', Comment = '%';
+            }
+            field("Shipment No. Gen"; Rec."Shipment No. Gen")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Shipment No. Gen field.', Comment = '%';
+            }
         }
     }
 }

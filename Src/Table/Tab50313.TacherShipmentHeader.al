@@ -64,7 +64,7 @@ table 50313 "Tacher Shipment Header"
     }
     keys
     {
-        key(PK; "Shipment No.", "Document Type", "Document No.")
+        key(PK; "Shipment No.")
         {
             Clustered = true;
         }

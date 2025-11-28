@@ -53,7 +53,7 @@ table 50314 "Teacher Shipment Line"
     }
     keys
     {
-        key(PK; "Document Type", "Document No.")
+        key(PK; "Document Type", "Document No.", "Line No.")
         {
             Clustered = true;
         }

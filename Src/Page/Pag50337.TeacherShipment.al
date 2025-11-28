@@ -2,9 +2,9 @@ page 50337 "Teacher Shipment"
 {
     ApplicationArea = All;
     Caption = 'Teacher Shipment';
-    PageType = Card;
+    PageType = Document;
     SourceTable = "Tacher Shipment Header";
-
+    SourceTableView = where("Document Type" = filter(Shipment));
     layout
     {
         area(Content)

@@ -52,6 +52,37 @@ page 50320 "Teacher Master List"
                 {
                     ToolTip = 'Specifies the value of the State field.', Comment = '%';
                 }
+                field("No. of Orders"; Rec."No. of Orders")
+                {
+                    ToolTip = 'Specifies the value of the No.of Orders field.', Comment = '%';
+                    trigger OnDrillDown()
+                    var
+                        OrderHeader: Record "Teacher Header";
+                    begin
+                        OrderHeader.SetRange("Teacher No.", Rec."Teacher No.");
+                        OrderHeader.SetRange("Document Type", OrderHeader."Document Type"::Assignment);
+                        PAGE.Run(PAGE::"Teacher Order List", OrderHeader);
+                    end;
+                }
+            }
+        }
+        area(FactBoxes)
+        {
+            part(Attachments; "Doc. Attachment List Factbox")
+            {
+                ApplicationArea = All;
+                Caption = 'Attachments';
+                SubPageLink = "Table ID" = const(50307), "No." = field("Teacher No.");
+            }
+
+            systempart(Links; Links)
+            {
+                ApplicationArea = All;
+            }
+
+            systempart(Notes; Notes)
+            {
+                ApplicationArea = All;
             }
         }
     }

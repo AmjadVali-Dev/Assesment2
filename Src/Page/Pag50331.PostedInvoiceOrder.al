@@ -2,9 +2,10 @@ page 50331 "Posted Invoice Order"
 {
     ApplicationArea = All;
     Caption = 'Posted Invoice Order';
-    PageType = Card;
+    PageType = Document;
     SourceTable = "Teacher Invoice Header";
-
+    SourceTableView = where("Document Type" = filter(Invoice));
+    RefreshOnActivate = true;
     layout
     {
         area(Content)

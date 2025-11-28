@@ -18,4 +18,8 @@ enum 50303 "Document Type Teacher"
     {
         Caption = 'Shipment';
     }
+    value(4; Quote)
+    {
+        Caption = 'Quote';
+    }
 }

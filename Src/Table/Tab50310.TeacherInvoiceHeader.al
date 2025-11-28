@@ -64,7 +64,7 @@ table 50310 "Teacher Invoice Header"
     }
     keys
     {
-        key(PK; "Invoice No.", "Document Type", "Document No.")
+        key(PK; "Invoice No.")
         {
             Clustered = true;
         }

@@ -2,9 +2,10 @@ page 50325 "Teacher Invoice"
 {
     ApplicationArea = All;
     Caption = 'Teacher Invoice';
-    PageType = Card;
+    PageType = Document;
     SourceTable = "Teacher Header";
-
+    SourceTableView = where("Document Type" = filter(Invoice));
+    RefreshOnActivate = true;
     layout
     {
         area(Content)

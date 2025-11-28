@@ -31,6 +31,16 @@ codeunit 50303 "Create Attachment"
             until DocumentRec.Next() = 0;
         end;
     end;
+
+
+    procedure UploadAttachment(TeacherHeader: Record "Teacher Header")
+    var
+        DocumentAtmt: Record "Document Attachment";
+        InstreamL: InStream;
+        FileNameL: Text[50];
+    begin
+
+    end;
 }
 
 

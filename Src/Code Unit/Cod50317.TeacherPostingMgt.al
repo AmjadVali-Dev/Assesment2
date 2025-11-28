@@ -7,10 +7,12 @@ codeunit 50317 "Teacher Posting Mgt"
         TeacherLine: Record "Teacher Line";
         NextLineNo: Integer;
         OpenPage: Boolean;
+        NoGen: Codeunit "Reuisition No Gen";
+        TeacherLedgerEntry: Record "Teacher Ledger Entry";
     begin
         InvoiceHeader.Init();
         InvoiceHeader."Document Type" := TeacherHeader."Document Type"::Invoice;
-        InvoiceHeader."Document No." := TeacherHeader."No.";
+        NoGen.Invoice_No_Gen(InvoiceHeader);
         InvoiceHeader."Teacher No." := TeacherHeader."Teacher No.";
         InvoiceHeader."Teacher Name" := TeacherHeader."Teacher Name";
         InvoiceHeader.Department := TeacherHeader.Department;
@@ -21,7 +23,6 @@ codeunit 50317 "Teacher Posting Mgt"
         InvoiceHeader."Posted On" := CurrentDateTime();
         InvoiceHeader.Insert(true);
 
-        TeacherLine.Reset();
         TeacherLine.SetRange("Document Type", TeacherHeader."Document Type");
         TeacherLine.SetRange("Document No.", TeacherHeader."No.");
         if TeacherLine.FindSet() then begin
@@ -29,7 +30,7 @@ codeunit 50317 "Teacher Posting Mgt"
             repeat
                 InvoiceLine.Init();
                 InvoiceLine."Document Type" := TeacherLine."Document Type"::Invoice;
-                InvoiceLine."Document No." := TeacherLine."Document No.";
+                InvoiceLine."Document No." := InvoiceHeader."Document No.";
                 InvoiceLine."Line No" := NextLineNo;
                 InvoiceLine."Subject Code" := TeacherLine."Subject Code ";
                 InvoiceLine."Subject Name" := TeacherLine."Subject Name";
@@ -44,7 +45,7 @@ codeunit 50317 "Teacher Posting Mgt"
 
         TeacherHeader.Status := TeacherHeader.Status::Posted;
         TeacherHeader.Modify(true);
-
+        InsertLedger(TeacherHeader, TeacherLedgerEntry.Type::Invoice);
         OpenPage := Confirm('Posting completed.\Do you want to open the posted invoice?', false);
         if OpenPage then
             Page.Run(Page::"Posted Invoice Order", InvoiceHeader);
@@ -58,11 +59,13 @@ codeunit 50317 "Teacher Posting Mgt"
         TeacherLine: Record "Teacher Line";
         NextLineNo: Integer;
         OpenPage: Boolean;
+        NoGen: Codeunit "Reuisition No Gen";
+        TeacherLedgerEntry: Record "Teacher Ledger Entry";
     begin
 
         ShipmentHeader.Init();
         ShipmentHeader."Document Type" := TeacherHeader."Document Type"::Shipment;
-        ShipmentHeader."Document No." := TeacherHeader."No.";
+        NoGen.Shipment_No_Gen(ShipmentHeader);
         ShipmentHeader."Teacher No." := TeacherHeader."Teacher No.";
         ShipmentHeader."Teacher Name" := TeacherHeader."Teacher Name";
         ShipmentHeader.Department := TeacherHeader.Department;
@@ -73,7 +76,6 @@ codeunit 50317 "Teacher Posting Mgt"
         ShipmentHeader."Shipped On" := CurrentDateTime();
         ShipmentHeader.Insert(true);
 
-        TeacherLine.Reset();
         TeacherLine.SetRange("Document Type", TeacherHeader."Document Type");
         TeacherLine.SetRange("Document No.", TeacherHeader."No.");
         if TeacherLine.FindSet() then begin
@@ -81,9 +83,8 @@ codeunit 50317 "Teacher Posting Mgt"
             repeat
                 ShipmentLine.Init();
                 ShipmentLine."Document Type" := TeacherLine."Document Type"::Shipment;
-                ShipmentLine."Document No." := TeacherLine."Document No.";
+                ShipmentLine."Document No." := ShipmentHeader."Document No.";
                 ShipmentLine."Line No." := NextLineNo;
-
                 ShipmentLine."Subject Code" := TeacherLine."Subject Code ";
                 ShipmentLine."Subject Name" := TeacherLine."Subject Name";
                 ShipmentLine."Hours Shipped" := TeacherLine."Hours Assained";
@@ -97,9 +98,28 @@ codeunit 50317 "Teacher Posting Mgt"
         end;
         TeacherHeader.Status := TeacherHeader.Status::Shipped;
         TeacherHeader.Modify(true);
+        InsertLedger(TeacherHeader, TeacherLedgerEntry.Type::Shipment);
         OpenPage := Confirm('Shipment posted successfully.\Do you want to open the posted shipment?', false);
-
         if OpenPage then
             Page.Run(Page::"Teacher Shipment", ShipmentHeader);
     end;
+
+    procedure InsertLedger(var TeacherHeader: Record "Teacher Header"; LedgerType: Enum "Document Type Teacher")
+    var
+        TeacherLedgerEntry: Record "Teacher Ledger Entry";
+    begin
+        TeacherLedgerEntry.Reset();
+        TeacherLedgerEntry.SetRange("Document No.", TeacherHeader."No.");
+        TeacherLedgerEntry.SetRange(Type, LedgerType);
+        if TeacherLedgerEntry.FindFirst() then
+            exit;
+        TeacherLedgerEntry.Init();
+        TeacherLedgerEntry.Type := LedgerType;
+        TeacherLedgerEntry."Document No." := TeacherHeader."No.";
+        TeacherLedgerEntry."Posting Date " := TeacherHeader."Posting Date";
+        TeacherLedgerEntry."Teacher No." := TeacherHeader."Teacher No.";
+        TeacherLedgerEntry.Insert(true);
+    end;
+
+
 }
