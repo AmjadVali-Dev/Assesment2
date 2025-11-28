@@ -24,4 +24,15 @@ codeunit 50300 "Reuisition No Gen"
         end;
     end;
 
+    procedure Teacher_No_Gen(var TeacherHeader: Record "Teacher Header")
+    var
+        NoSeriesRec: Codeunit "No. Series";
+        SalesandReceive: Record "Sales & Receivables Setup";
+    begin
+        if TeacherHeader."No." = '' then begin
+            SalesandReceive.Get();
+            SalesandReceive.TestField("Teacher No. Gen");
+            TeacherHeader."No." := NoSeriesRec.GetNextNo(SalesandReceive."Teacher No. Gen", Today(), true);
+        end;
+    end;
 }

@@ -20,17 +20,27 @@ codeunit 50302 DeleteNote
     procedure CalculateTotalSalesOrders(CustomerRec: Record Customer): Decimal
     var
         SalesHeader: Record "Sales Header";
-        TotalAmount: Decimal;
+        Count: Decimal;
     begin
-        TotalAmount := 0;
+        Count := 0;
         SalesHeader.SetRange("Document Type", SalesHeader."Document Type"::Order);
         SalesHeader.SetRange("Sell-to Customer No.", CustomerRec."No.");
         if SalesHeader.FindSet() then
             repeat
-                TotalAmount += SalesHeader.Amount;
+                Count := Count + 1;
             until SalesHeader.Next() = 0;
 
-        Message('Total sales orders amount for customer %1: %2', CustomerRec."No.", TotalAmount);
-        exit(TotalAmount);
+        Message('Total sales orders amount for customer %1: %2', CustomerRec."No.", Count);
+        exit(Count);
+    end;
+
+
+    procedure FindingCustomer(SalesHeader: Record "Sales Header")
+    var
+        Customer: Record Customer;
+    begin
+        if Customer.Get(SalesHeader."Sell-to Customer No.") then Begin
+            Message(Customer.Name);
+        End
     end;
 }

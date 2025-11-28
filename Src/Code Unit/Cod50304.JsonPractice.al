@@ -35,6 +35,7 @@ codeunit 50304 "Json Practice"
         SalesLinerec.SetRange("Document No.", SalesLinerec."No.");
         if SalesLinerec.FindSet() then begin
             repeat
+                Clear(LineJsonObjectRec);
                 LineJsonObjectRec.Add('LineNo', SalesLinerec."Line No.");
                 LineJsonObjectRec.Add('Type', SalesLinerec.Type.AsInteger());
                 LineJsonObjectRec.Add('No', SalesLinerec."No.");

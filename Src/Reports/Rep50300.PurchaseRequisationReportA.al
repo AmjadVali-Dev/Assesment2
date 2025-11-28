@@ -28,6 +28,7 @@ report 50300 "Purchase Requisation Report A"
                 column(Description; Description) { }
                 column(Quantity; Quantity) { }
                 column(Unit_Of_Measure_Code; "Unit Of Measure Code") { }
+
             }
         }
     }

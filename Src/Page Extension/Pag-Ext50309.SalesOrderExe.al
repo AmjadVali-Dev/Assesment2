@@ -14,6 +14,16 @@ pageextension 50309 "Sales Order Exe" extends "Sales Order"
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Customer Name field.', Comment = '%';
             }
+            field("Field Test"; Rec."Field Test")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Field Test field.', Comment = '%';
+            }
+            field("Cust Name"; Rec."Cust Name")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Customer Name field.', Comment = '%';
+            }
         }
     }
     actions
@@ -107,6 +117,18 @@ pageextension 50309 "Sales Order Exe" extends "Sales Order"
                     CodeunitRec: Codeunit "Sales Order Creation";
                 begin
                     CodeunitRec.CreateSalesOrderFromCustomer();
+                end;
+            }
+            action("Finding The Customer")
+            {
+                ApplicationArea = All;
+                Caption = 'Finding The Customer';
+                Image = New;
+                trigger OnAction()
+                var
+                    DeletenoteRec: Codeunit DeleteNote;
+                begin
+                    DeletenoteRec.FindingCustomer(Rec);
                 end;
             }
 
