@@ -103,12 +103,16 @@ page 50323 "Teacher Order"
         }
         area(FactBoxes)
         {
-            part(Attachments; "Doc. Attachment List Factbox")
+            part(TeacherDetails; "Teacher Details FactBox")
+            {
+                SubPageLink = "No." = field("No.");
+            }
+            part(Attachments; "Teacher Attachment FactBox")
             {
                 ApplicationArea = All;
                 Caption = 'Attachments';
                 SubPageLink = "Table ID" = const(50308),
-                      "No." = field("No.");
+              "No." = field("No.");
             }
 
             systempart(Links; Links)
@@ -352,6 +356,32 @@ page 50323 "Teacher Order"
                     RecordLink."User ID" := UserId;
                     RecordLink.Insert(true);
                     Message('Link added successfully for Teacher Order %1', Rec."No.");
+                end;
+            }
+            action("Add Atachments")
+            {
+                ApplicationArea = All;
+                Image = Attachments;
+                Caption = 'Add Attachments';
+                trigger OnAction()
+                var
+                    CreateAttachment: Codeunit "Create Attachment";
+                begin
+                    CreateAttachment.UploadAttachment(Rec);
+                end;
+            }
+            fileuploadaction(UploadFiles)
+            {
+                Caption = 'Upload Files';
+                Image = Import;
+                ApplicationArea = All;
+                AllowMultipleFiles = true;
+                trigger OnAction(Files: List of [FileUpload])
+                var
+                    CreateAttachment: Codeunit "Create Attachment";
+                begin
+                    CreateAttachment.UploadAttachmentMulti(Rec, Files);
+                    CurrPage.Update();
                 end;
             }
         }

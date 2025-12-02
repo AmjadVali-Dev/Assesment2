@@ -38,8 +38,51 @@ codeunit 50303 "Create Attachment"
         DocumentAtmt: Record "Document Attachment";
         InstreamL: InStream;
         FileNameL: Text[50];
+        DailogueText: Label 'Please Insert The File';
     begin
+        if UploadIntoStream(DailogueText, '', '', FileNameL, InstreamL) then begin
+            DocumentAtmt.Init();
+            DocumentAtmt."Table ID" := Database::"Teacher Header";
+            DocumentAtmt."No." := TeacherHeader."No.";
+            DocumentAtmt."Line No." := 10000;
+            DocumentAtmt."Attached Date" := CurrentDateTime;
+            DocumentAtmt."File Name" := FileNameL;
+            DocumentAtmt.User := UserId;
+            DocumentAtmt.Insert();
+            DocumentAtmt."Document Reference ID".ImportStream(InstreamL, FileNameL);
+            DocumentAtmt.Modify();
+        end;
+    end;
 
+
+    procedure UploadAttachmentMulti(TeacherHeader: Record "Teacher Header"; files: List of [FileUpload])
+    var
+        DocumentAtmt: Record "Document Attachment";
+        InstreamL: InStream;
+        File: FileUpload;
+        FileNameL: Text[150];
+        LineNo: Integer;
+    begin
+        LineNo := 10000;
+
+        foreach File in files do begin
+            FileNameL := File.FileName;
+            File.CreateInStream(InstreamL);
+            DocumentAtmt.Init();
+            DocumentAtmt."Table ID" := Database::"Teacher Header";
+            DocumentAtmt."No." := TeacherHeader."No.";
+            DocumentAtmt."Line No." := LineNo;
+            DocumentAtmt."Attached Date" := CurrentDateTime;
+            DocumentAtmt."File Name" := FileNameL;
+            DocumentAtmt.User := UserId;
+            DocumentAtmt.Insert();
+
+            // Save file content
+            DocumentAtmt."Document Reference ID".ImportStream(InstreamL, FileNameL);
+            DocumentAtmt.Modify();
+
+            LineNo += 10000;
+        end;
     end;
 }
 
