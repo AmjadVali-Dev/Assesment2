@@ -29,4 +29,8 @@ table 50316 "Teacher XML Stats"
             Clustered = true;
         }
     }
+    // trigger OnInsert()
+    // begin
+    //     "No." := 'STATS';
+    // end;
 }

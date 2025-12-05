@@ -66,7 +66,6 @@ codeunit 50321 "All Teacher Export"
         InStr: InStream;
     begin
         FileName := 'All_Teacher_Records.json';
-
         TempBlob.CreateOutStream(OutStr, TextEncoding::UTF8);
         OutStr.WriteText(JsonText);
         TempBlob.CreateInStream(InStr, TextEncoding::UTF8);
@@ -187,4 +186,3 @@ codeunit 50321 "All Teacher Export"
             Error('Invalid JSON: Data array not found.');
     end;
 }
-
