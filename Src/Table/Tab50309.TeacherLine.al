@@ -17,7 +17,7 @@ table 50309 "Teacher Line"
         {
             Caption = 'Line No.';
         }
-        field(4; "Subject Code "; Code[20])
+        field(4; "Subject Code"; Code[20])
         {
             Caption = 'Subject Code ';
             TableRelation = "Subject Master Table"."Subject Code";
@@ -25,7 +25,7 @@ table 50309 "Teacher Line"
             var
                 SubjectRec: Record "Subject Master Table";
             begin
-                if SubjectRec.Get("Subject Code ") then
+                if SubjectRec.Get("Subject Code") then
                     "Subject Name" := SubjectRec."Subject Name";
             end;
 

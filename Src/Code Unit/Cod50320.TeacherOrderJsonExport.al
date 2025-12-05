@@ -8,7 +8,7 @@ codeunit 50320 "Teacher Order Json Export"
         JsonRoot: JsonObject;
         TeacherLineRec: Record "Teacher Line";
     begin
-        HeaderJson.Add('Document Type', Format(TeacherHeaderRec."Document Type"));
+        HeaderJson.Add('Document Type', Format(TeacherHeaderRec."Document Type"::Assignment));
         HeaderJson.Add('No', TeacherHeaderRec."No.");
         HeaderJson.Add('Teacher No', TeacherHeaderRec."Teacher No.");
         HeaderJson.Add('Teacher Name', TeacherHeaderRec."Teacher Name");
@@ -29,7 +29,7 @@ codeunit 50320 "Teacher Order Json Export"
             repeat
                 Clear(LineJson);
                 LineJson.Add('Line No', TeacherLineRec."Line No.");
-                LineJson.Add('Subject Code', TeacherLineRec."Subject Code ");
+                LineJson.Add('Subject Code', TeacherLineRec."Subject Code");
                 LineJson.Add('Subject Name', TeacherLineRec."Subject Name");
                 LineJson.Add('Hours Assained', TeacherLineRec."Hours Assained");
                 LineJson.Add('Class Date', TeacherLineRec."Class Date");

@@ -24,7 +24,7 @@ codeunit 50322 "Teacher Quote Mgmt"
                 OrderLine."Document Type" := OrderLine."Document Type"::Assignment;
                 OrderLine."Document No." := OrderHeader."No.";
                 OrderLine."Line No." := NextLineNo;
-                OrderLine."Subject Code " := QuoteLine."Subject Code ";
+                OrderLine."Subject Code" := QuoteLine."Subject Code";
                 OrderLine."Subject Name" := QuoteLine."Subject Name";
                 OrderLine."Hours Assained" := QuoteLine."Hours Assained";
                 OrderLine.Insert(true);

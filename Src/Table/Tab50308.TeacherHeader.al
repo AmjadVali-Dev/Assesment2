@@ -21,10 +21,25 @@ table 50308 "Teacher Header"
             trigger OnValidate()
             var
                 MasterRec: Record "Master Table Teacher";
+                Length: Integer;
+                FirstFive: Text[10];
+                Deletedletters: Text[10];
+                InsertedText: Text[50];
             begin
                 if MasterRec.Get("Teacher No.") then begin
                     "Teacher Name" := MasterRec."Teacher Name";
                     Department := MasterRec.Department;
+                    // Length := StrLen((MasterRec."Teacher Name"));
+                    // if Length > 20 then
+                    //     Error('Teacher Name Leangth Exceeds 20 Characters. Please Update Teacher Name in Master Table Teacher')
+                    // else
+                    //     Message('Teacher Name Length is Valid with %1 Characters', Length);
+                    // FirstFive := CopyStr(MasterRec."Teacher Name", 1, 5);
+                    // Message('First Five Characters of Teacher Name: %1', FirstFive);
+                    // Deletedletters := DelStr(MasterRec."Teacher Name", 3, 4);
+                    // Message('Teacher Name After Deleting Characters From Position 3 to 4: %1', Deletedletters);
+                    // InsertedText := InsStr(MasterRec."Teacher Name", ' - TEACHER', Length + 1);
+                    // Message('Teacher Name After Inserting Text at the End: %1', InsertedText);
                 end;
                 Description := Rec."Teacher Name" + ' - Order Is Created';
             end;
@@ -98,6 +113,11 @@ table 50308 "Teacher Header"
             FieldClass = FlowField;
             CalcFormula = sum("Teacher Line"."Hours Assained" where("Document Type" = filter(Assignment), "Document No." = field("No.")));
         }
+        field(19; "Is Assigned"; Boolean)
+        {
+            Caption = 'Is Assigned';
+            Editable = false;
+        }
 
     }
     keys
@@ -138,4 +158,22 @@ table 50308 "Teacher Header"
 
         "Total Hours " := HoursTotal;
     end;
+
+    procedure UpdateAssignmentStatus()
+    var
+        LineRec: Record "Teacher Line";
+    begin
+        LineRec.Reset();
+        LineRec.SetRange("Document No.", "No.");
+        LineRec.SetRange("Document Type", "Document Type");
+
+        if LineRec.FindFirst() then begin
+            "Is Assigned" := true;
+            Rec.Modify();
+        end else begin
+            "Is Assigned" := false;
+            Rec.Modify();
+        end;
+    end;
+
 }

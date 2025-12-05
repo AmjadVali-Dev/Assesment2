@@ -4,7 +4,7 @@ page 50327 "Teacher Order Subform"
     Caption = 'Teacher Order Subform';
     PageType = ListPart;
     SourceTable = "Teacher Line";
-    
+
     layout
     {
         area(Content)
@@ -23,7 +23,7 @@ page 50327 "Teacher Order Subform"
                 {
                     ToolTip = 'Specifies the value of the Line No. field.', Comment = '%';
                 }
-                field("Subject Code "; Rec."Subject Code ")
+                field("Subject Code"; Rec."Subject Code")
                 {
                     ToolTip = 'Specifies the value of the Subject Code field.', Comment = '%';
                 }

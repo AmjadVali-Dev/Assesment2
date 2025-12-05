@@ -29,7 +29,7 @@ report 50307 "Teacher Header Report"
                 column(Document_Type; "Document Type") { }
                 column(Line_No_; "Line No.") { }
                 column(Hours_Assained; "Hours Assained") { }
-                column(Subject_Code_; "Subject Code ") { }
+                column(Subject_Code_; "Subject Code") { }
                 column(Subject_Name; "Subject Name") { }
 
             }

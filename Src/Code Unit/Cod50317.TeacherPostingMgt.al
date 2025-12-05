@@ -32,7 +32,7 @@ codeunit 50317 "Teacher Posting Mgt"
                 InvoiceLine."Document Type" := TeacherLine."Document Type"::Invoice;
                 InvoiceLine."Document No." := InvoiceHeader."Document No.";
                 InvoiceLine."Line No" := NextLineNo;
-                InvoiceLine."Subject Code" := TeacherLine."Subject Code ";
+                InvoiceLine."Subject Code" := TeacherLine."Subject Code";
                 InvoiceLine."Subject Name" := TeacherLine."Subject Name";
                 InvoiceLine."Hours Assained" := TeacherLine."Hours Assained";
                 InvoiceLine."Class Date" := TeacherLine."Class Date";
@@ -85,7 +85,7 @@ codeunit 50317 "Teacher Posting Mgt"
                 ShipmentLine."Document Type" := TeacherLine."Document Type"::Shipment;
                 ShipmentLine."Document No." := ShipmentHeader."Document No.";
                 ShipmentLine."Line No." := NextLineNo;
-                ShipmentLine."Subject Code" := TeacherLine."Subject Code ";
+                ShipmentLine."Subject Code" := TeacherLine."Subject Code";
                 ShipmentLine."Subject Name" := TeacherLine."Subject Name";
                 ShipmentLine."Hours Shipped" := TeacherLine."Hours Assained";
                 ShipmentLine."Class Date" := TeacherLine."Class Date";

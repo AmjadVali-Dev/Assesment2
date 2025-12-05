@@ -10,11 +10,11 @@ codeunit 50321 "All Teacher Export"
         LineJson: JsonObject;
         LineArray: JsonArray;
     begin
+        TeacherHeaderRec.SetRange("Document Type", TeacherHeaderRec."Document Type"::Assignment);
         if TeacherHeaderRec.FindSet() then
             repeat
                 Clear(HeaderJson);
                 Clear(LineArray);
-
                 HeaderJson.Add('Document Type', Format(TeacherHeaderRec."Document Type"));
                 HeaderJson.Add('No', TeacherHeaderRec."No.");
                 HeaderJson.Add('Teacher No', TeacherHeaderRec."Teacher No.");
@@ -36,7 +36,7 @@ codeunit 50321 "All Teacher Export"
                     repeat
                         Clear(LineJson);
                         LineJson.Add('Line No', TeacherLineRec."Line No.");
-                        LineJson.Add('Subject Code', TeacherLineRec."Subject Code ");
+                        LineJson.Add('Subject Code', TeacherLineRec."Subject Code");
                         LineJson.Add('Subject Name', TeacherLineRec."Subject Name");
                         LineJson.Add('Hours Assained', TeacherLineRec."Hours Assained");
                         LineJson.Add('Class Date', TeacherLineRec."Class Date");
@@ -46,14 +46,17 @@ codeunit 50321 "All Teacher Export"
                     until TeacherLineRec.Next() = 0;
 
                 HeaderJson.Add('Lines', LineArray);
-
                 HeaderListArray.Add(HeaderJson);
+
             until TeacherHeaderRec.Next() = 0;
+
         JsonRoot.Add('Status', 'Success');
         JsonRoot.Add('Message', 'All Teacher Records Exported');
         JsonRoot.Add('Data', HeaderListArray);
+
         exit(Format(JsonRoot));
     end;
+
 
     procedure DownloadJson(JsonText: Text)
     var
@@ -164,7 +167,7 @@ codeunit 50321 "All Teacher Export"
                         LineObjJson.GetStringPropertyValueByName('Line No', LineNoL);
                         Evaluate(TeacherLineRec."Line No.", LineNoL);
                         LineObjJson.GetStringPropertyValueByName('Subject Code', SubCodeL);
-                        TeacherLineRec."Subject Code " := SubCodeL;
+                        TeacherLineRec."Subject Code" := SubCodeL;
                         LineObjJson.GetStringPropertyValueByName('Subject Name', SubNameL);
                         TeacherLineRec."Subject Name" := SubNameL;
                         LineObjJson.GetStringPropertyValueByName('Hours Assained', HoursL);

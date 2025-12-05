@@ -94,6 +94,10 @@ page 50323 "Teacher Order"
                         PAGE.Run(PAGE::"Teacher Line List", Orderline);
                     end;
                 }
+                field("Is Assigned"; Rec."Is Assigned")
+                {
+                    ToolTip = 'Specifies the value of the Is Assigned field.', Comment = '%';
+                }
             }
             part("Teacher Order Subform"; "Teacher Order Subform")
             {
@@ -384,6 +388,7 @@ page 50323 "Teacher Order"
                     CurrPage.Update();
                 end;
             }
+
         }
     }
 }

@@ -7,6 +7,7 @@ page 50322 "Teacher Order List"
     UsageCategory = Lists;
     CardPageId = "Teacher Order";
     SourceTableView = where("Document Type" = filter(Assignment));
+
     RefreshOnActivate = true;
     layout
     {
@@ -91,6 +92,10 @@ page 50322 "Teacher Order List"
                         PAGE.Run(PAGE::"Teacher Line List", Orderline);
                     end;
                 }
+                field("Is Assigned"; Rec."Is Assigned")
+                {
+                    ToolTip = 'Specifies the value of the Is Assigned field.', Comment = '%';
+                }
             }
         }
         area(FactBoxes)
@@ -165,7 +170,7 @@ page 50322 "Teacher Order List"
                 Caption = 'Import Data Using text';
                 trigger OnAction()
                 var
-                    JsonTextL: Text[14100];
+                    JsonTextL: Text;
                     JsonTextRec: Page "Get The Data For Teacher";
                     JsonCodeunit: Codeunit "All Teacher Export";
                 begin
@@ -174,6 +179,37 @@ page 50322 "Teacher Order List"
                     JsonCodeunit.ImportTeacherFromJson(JsonTextL);
                 end;
             }
+            action(FilterNotAssigned)
+            {
+                Caption = 'Show Not Assigned Teachers';
+                ApplicationArea = All;
+                Image = Filter;
+
+                trigger OnAction()
+                var
+                    TeacherHeaderRec: Record "Teacher Header";
+                begin
+                    TeacherHeaderRec.SetRange("Is Assigned", false);
+                    CurrPage.SetTableView(TeacherHeaderRec);
+                end;
+            }
+            action(ExportCustomersXml)
+            {
+                Caption = 'Export Teacher to XML';
+                ApplicationArea = All;
+                Image = Export;
+                trigger OnAction()
+                var
+                    CustXml: XmlPort "Teacher Header Xml Report";
+                begin
+                    // CustXml.Run();
+                    Xmlport.Run(50300, true, false);
+                end;
+            }
         }
     }
+    trigger OnAfterGetCurrRecord()
+    begin
+        Rec.UpdateAssignmentStatus();
+    end;
 }

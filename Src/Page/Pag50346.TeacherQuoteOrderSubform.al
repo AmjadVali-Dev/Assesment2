@@ -23,7 +23,7 @@ page 50346 "Teacher Quote Order Subform"
                 {
                     ToolTip = 'Specifies the value of the Line No. field.', Comment = '%';
                 }
-                field("Subject Code "; Rec."Subject Code ")
+                field("Subject Code"; Rec."Subject Code")
                 {
                     ToolTip = 'Specifies the value of the Subject Code field.', Comment = '%';
                 }
