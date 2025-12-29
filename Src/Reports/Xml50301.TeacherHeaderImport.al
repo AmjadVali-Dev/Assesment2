@@ -4,7 +4,7 @@ xmlport 50301 "Teacher Header Import"
     Format = Xml;
     Encoding = UTF8;
     Direction = Import;
-
+    
     schema
     {
         textelement(RootNodeName)

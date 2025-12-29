@@ -4,7 +4,6 @@ page 50352 "Teacher XML Import/Export"
     Caption = 'Teacher XML Import/Export';
     PageType = Card;
     UsageCategory = Administration;
-    //SourceTable = "Teacher XML Stats";
 
     layout
     {
@@ -48,6 +47,7 @@ page 50352 "Teacher XML Import/Export"
                 var
                     Teacher: Record "Teacher Header";
                 begin
+                    EnsureStatsRec();
                     XmlPort.Run(XmlPort::"Teacher Header Xml Report", true, false);
                     StatsRec."Last Export Date" := CurrentDateTime();
                     Teacher.SetRange("Document Type", Teacher."Document Type"::Assignment);

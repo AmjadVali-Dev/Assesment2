@@ -131,6 +131,20 @@ pageextension 50309 "Sales Order Exe" extends "Sales Order"
                     DeletenoteRec.FindingCustomer(Rec);
                 end;
             }
+            action("Customer sales Quantity")
+            {
+                ApplicationArea = All;
+                Caption = 'Customer Sales Quantity';
+                Promoted = true;
+                PromotedCategory = Process;
+                trigger OnAction()
+                var
+                    CodeunitRec: Codeunit "Query Code Unit";
+                begin
+                    Clear(CodeunitRec);
+                    CodeunitRec.Run();
+                end;
+            }
 
         }
     }
