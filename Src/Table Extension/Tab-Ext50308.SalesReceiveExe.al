@@ -26,5 +26,12 @@ tableextension 50308 "Sales & Receive Exe" extends "Sales & Receivables Setup"
             Caption = 'Invoice No. Gen';
             DataClassification = ToBeClassified;
         }
+        field(50304; "Custom No. Gen"; Code[20])
+        {
+            TableRelation = "No. Series";
+            Caption = 'Custom No. Gen';
+            DataClassification = ToBeClassified;
+        }
+
     }
 }

@@ -60,5 +60,16 @@ codeunit 50300 "Reuisition No Gen"
         end;
     end;
 
+    procedure Custom_No_Gen(var CustomHeader: Record "Custom Header")
+    var
+        NoSeriesRec: Codeunit "No. Series";
+        SalesandReceive: Record "Sales & Receivables Setup";
+    begin
+        if CustomHeader."No." = '' then begin
+            SalesandReceive.Get();
+            SalesandReceive.TestField("Custom No. Gen");
+            CustomHeader."No." := NoSeriesRec.GetNextNo(SalesandReceive."Custom No. Gen", Today(), true);
+        end;
+    end;
 
 }

@@ -24,6 +24,12 @@ pageextension 50312 "Sales & Receive Exe" extends "Sales & Receivables Setup"
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Shipment No. Gen field.', Comment = '%';
             }
+            field("Custom No. Gen"; Rec."Custom No. Gen")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Custom No. Gen field.', Comment = '%';
+            }
+
         }
     }
 }
